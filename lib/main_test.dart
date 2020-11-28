@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Divider(height: 32),
             ListenLocationWidget(),
             Divider(height: 32),
-            //SpeedWidget()
+            SpeedWidget()
           ],
         ),
       ),
