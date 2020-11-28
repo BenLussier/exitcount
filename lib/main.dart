@@ -5,7 +5,7 @@ import 'get_location.dart';
 import 'listen_location.dart';
 import 'permission_status.dart';
 import 'service_enabled.dart';
-import 'speed.dart';
+//import 'speed.dart';
 
 void main() => runApp(MyApp());
 
