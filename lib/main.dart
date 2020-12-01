@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 
 import 'get_location.dart';
-import 'listen_location.dart';
-import 'permission_status.dart';
-import 'service_enabled.dart';
-//import 'speed.dart';
+// import 'listen_location.dart';
+// import 'permission_status.dart';
+// import 'service_enabled.dart';
+import 'speed.dart';
 
 void main() => runApp(MyApp());
 
@@ -84,15 +84,15 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(32),
         child: Column(
           children: <Widget>[
-            PermissionStatusWidget(),
-            Divider(height: 32),
-            ServiceEnabledWidget(),
-            Divider(height: 32),
+            // PermissionStatusWidget(),
+            // Divider(height: 32),
+            // ServiceEnabledWidget(),
+            // Divider(height: 32),
             GetLocationWidget(),
+            // Divider(height: 32),
+            // ListenLocationWidget(),
             Divider(height: 32),
-            ListenLocationWidget(),
-            Divider(height: 32),
-            //SpeedWidget()
+            SpeedWidget()
           ],
         ),
       ),
