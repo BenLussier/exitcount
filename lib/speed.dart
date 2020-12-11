@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'dart:math';
+// import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-//import 'package:location/location.dart';
+// import 'package:flutter/services.dart';
+// import 'package:location/location.dart';
 import 'package:geolocator/geolocator.dart';
 
 // #TODO: This appears to crash app probably if permissions aren't granted
@@ -87,56 +87,58 @@ class _SpeedState extends State<SpeedWidget> {
   @override
   void initState() {
     super.initState();
-    //_listenLocation();
+    // _listenLocation();
+    startTimer();
   }
 
   @override
   void dispose() {
-    //_stopListen();
+    // _stopListen();
+    stopTimer();
     super.dispose();
   }
 
   StreamSubscription<Position> positionStream;
+  Position _position;
   void startTimer() {
-    positionStream =
-        Geolocator.getPositionStream(timeLimit: Duration(seconds: 2)).listen(
-            (Position position) {
-      print(position == null
-          ? 'Unknown'
-          : position.latitude.toString() +
-              ', ' +
-              position.longitude.toString());
+    positionStream = Geolocator.getPositionStream().listen((Position position) {
+      // print(position == null
+      //     ? 'Unknown'
+      //     : position.latitude.toString() +
+      //         ', ' +
+      //         position.longitude.toString());
+      _position = position;
       setState(() {
         _speed = position.speed.toString();
       });
     }, onError: (error) {
       // #TODO: Need to handle the stream being canceled.
       setState(() {
-        _speed = '--';
+        _speed = 'error';
       });
     });
-    // timer = Timer.periodic(Duration(seconds: 5), (Timer t) async {
-    //   String _result = '';
-    //   // _result =
-    //   //     await _getLocationData().timeout(Duration(seconds: 2), onTimeout: () {
-    //   //   // setState(() {
-    //   //   //   _error = '--';
-    //   //   // });
-    //   //   return '--';
-    //   // });
-    //   Position position = await Geolocator.getCurrentPosition(
-    //       desiredAccuracy: LocationAccuracy.high);
-    //   _result = position.speed.toString();
-    //   // Random r = new Random();
-    //   // _result = r.nextInt(100).toString();
-    //   setState(() {
-    //     _speed = _result;
-    //   });
-    // });
+    timer = Timer.periodic(Duration(seconds: 2), (Timer t) async {
+      // String _result = '';
+      // _result =
+      //     await _getLocationData().timeout(Duration(seconds: 2), onTimeout: () {
+      //   // setState(() {
+      //   //   _error = '--';
+      //   // });
+      //   return '--';
+      // });
+      // Random r = new Random();
+      // _result = r.nextInt(100).toString();
+      Duration diff = DateTime.now().difference(_position.timestamp);
+      if (diff > Duration(seconds: 2)) {
+        setState(() {
+          _speed = '--';
+        });
+      }
+    });
   }
 
-  void cancelTimer() async {
-    //timer?.cancel();
+  void stopTimer() async {
+    timer?.cancel();
     await positionStream?.cancel();
   }
 
@@ -144,17 +146,9 @@ class _SpeedState extends State<SpeedWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        RaisedButton(
-          child: Text('Start'),
-          onPressed: startTimer,
-        ),
-        RaisedButton(
-          child: Text('Stop'),
-          onPressed: cancelTimer,
-        ),
         Text(
           // 'Timer Speed: ' + (_error ?? '${_locationData?.speed ?? "unknown"}'),
-          'Speed: $_speed',
+          'Speed: ' + (_error ?? _speed ?? 'unknown'),
           style: Theme.of(context).textTheme.bodyText1,
         ),
       ],
