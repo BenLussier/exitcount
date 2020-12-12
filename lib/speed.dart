@@ -108,6 +108,7 @@ class _SpeedState extends State<SpeedWidget> {
       //         ', ' +
       //         position.longitude.toString());
       _position = position;
+      // #TODO: handle speed = -1
       setState(() {
         _speed = position.speed.toString();
       });
