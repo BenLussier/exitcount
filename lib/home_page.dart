@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'more_menu.dart';
 import 'speed.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -15,21 +15,17 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ExitCount™'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              Navigator.of(context).pushNamed('/settings');
-            },
-          )
-        ],
-      ),
+          backgroundColor: ThemeData.dark().primaryColor,
+          centerTitle: false,
+          title: Text('ExitCount™'),
+          actions: <Widget>[
+            MoreMenu(),
+          ]),
       body: Container(
         padding: const EdgeInsets.all(32),
-        child: Column(
-          children: <Widget>[SpeedWidget()],
-        ),
+        child: Column(children: <Widget>[
+          SpeedWidget(),
+        ]),
       ),
     );
   }

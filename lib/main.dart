@@ -20,16 +20,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'ExitCount™',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blueGrey,
-          accentColor: Colors.blue,
-          brightness: Brightness.light,
-        ),
-        darkTheme: ThemeData(
-          primarySwatch: Colors.deepPurple,
-          accentColor: Colors.deepPurple,
-          brightness: Brightness.light,
-        ),
+        theme: ThemeData.light(),
+        darkTheme: ThemeData.dark(),
         routes: {
           '/': (context) => MyHomePage(),
           '/settings': (context) => SettingsPage(),
