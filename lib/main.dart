@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import 'home_page.dart';
 import 'settings_page.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // protect calls before runApp()
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp]); // force portrait mode
+  HydratedBloc.storage = await HydratedStorage.build();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -20,12 +28,10 @@ class MyApp extends StatelessWidget {
         darkTheme: ThemeData(
           primarySwatch: Colors.deepPurple,
           accentColor: Colors.deepPurple,
-          brightness: Brightness.dark,
+          brightness: Brightness.light,
         ),
         routes: {
-          // When navigating to the "/" route, build the FirstScreen widget.
           '/': (context) => MyHomePage(),
-          // When navigating to the "/second" route, build the SecondScreen widget.
           '/settings': (context) => SettingsPage(),
         });
   }
