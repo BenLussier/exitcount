@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+
+import 'app_settings_cubit.dart';
 
 import 'home_page.dart';
 import 'settings_page.dart';
@@ -17,7 +20,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return BlocProvider(
+      create: (_) => AppSettingsCubit(),
+      child: MaterialApp(
         title: 'ExitCount™',
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light(),
@@ -25,6 +30,8 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => MyHomePage(),
           '/settings': (context) => SettingsPage(),
-        });
+        },
+      ),
+    );
   }
 }

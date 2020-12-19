@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'app_settings.dart';
+import 'app_settings_cubit.dart';
 import 'more_menu.dart';
 import 'speed.dart';
 
@@ -21,12 +24,20 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: <Widget>[
             MoreMenu(),
           ]),
-      body: Container(
-        padding: const EdgeInsets.all(32),
-        child: Column(children: <Widget>[
-          SpeedWidget(),
-        ]),
+      body: BlocBuilder<AppSettingsCubit, AppSettings>(
+        builder: (context, state) {
+          return Center(
+            child: Text(state.smGroupDistance.toString()),
+          );
+        },
       ),
     );
   }
 }
+
+// body: Container(
+//         padding: const EdgeInsets.all(32),
+//         child: Column(children: <Widget>[
+//           SpeedWidget(),
+//         ]),
+//       ),
