@@ -57,7 +57,12 @@ class _SettingsState extends State<SettingsPage> {
                 endIndent: 0,
               ),
               SwitchListTile(
-                title: Text('Use Knots'),
+                title: Column(
+                  children: [
+                    Text('Use Knots'),
+                    Text('Use knots instead of'),
+                  ],
+                ),
                 value: state.useKnots,
                 onChanged: (value) {
                   context.read<AppSettingsCubit>().setUseKnots(value);
