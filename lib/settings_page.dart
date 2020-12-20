@@ -25,17 +25,21 @@ class _SettingsState extends State<SettingsPage> {
         builder: (context, state) {
           return ListView(
             padding: const EdgeInsets.all(8),
-            children: <Widget>[
+            children: [
               ExpansionTile(
-                title: Text(
-                    'Separation Distance: ' + state.smGroupDistance.toString()),
-                children: <Widget>[
+                title: Row(
+                  children: [
+                    Text(state.smGroupDistance.toString(),
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text("' Separation"),
+                  ],
+                ),
+                children: [
                   TextFormField(
-                    decoration: InputDecoration(labelText: "Enter your number"),
+                    decoration: InputDecoration(
+                        labelText: 'Enter group separation in feet:'),
                     keyboardType: TextInputType.number,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     initialValue: state.smGroupDistance.toString(),
                     autofocus: true,
                     onChanged: (input) {
@@ -45,6 +49,34 @@ class _SettingsState extends State<SettingsPage> {
                     },
                   ),
                 ],
+              ),
+              const Divider(
+                height: 1,
+                thickness: 1,
+                indent: 0,
+                endIndent: 0,
+              ),
+              SwitchListTile(
+                title: Text('Show speed'),
+                value: state.showSpeed,
+                onChanged: (value) {
+                  context.read<AppSettingsCubit>().setShowSpeed(value);
+                },
+              ),
+              const Divider(
+                height: 1,
+                thickness: 1,
+                indent: 0,
+                endIndent: 0,
+              ),
+              SwitchListTile(
+                title: Text('Use Knots'),
+                value: state.useKnots,
+                onChanged: state.showSpeed
+                    ? (value) {
+                        context.read<AppSettingsCubit>().setUseKnots(value);
+                      }
+                    : null,
               ),
               const Divider(
                 height: 1,

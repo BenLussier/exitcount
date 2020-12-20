@@ -26,18 +26,19 @@ class _MyHomePageState extends State<MyHomePage> {
           ]),
       body: BlocBuilder<AppSettingsCubit, AppSettings>(
         builder: (context, state) {
-          return Center(
-            child: Text(state.smGroupDistance.toString()),
+          return Container(
+            padding: const EdgeInsets.all(32),
+            child: Column(
+              children: <Widget>[
+                SpeedWidget(),
+                Text(state.smGroupDistance.toString()),
+                Text('Show speed: ' + state.showSpeed.toString()),
+                Text('Use knots: ' + state.useKnots.toString()),
+              ],
+            ),
           );
         },
       ),
     );
   }
 }
-
-// body: Container(
-//         padding: const EdgeInsets.all(32),
-//         child: Column(children: <Widget>[
-//           SpeedWidget(),
-//         ]),
-//       ),

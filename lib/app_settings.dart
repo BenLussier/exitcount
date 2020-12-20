@@ -1,5 +1,7 @@
 class AppSettings {
   int smGroupDistance;
+  bool showSpeed;
+  bool useKnots;
 
-  AppSettings({this.smGroupDistance = 1000});
+  AppSettings({this.smGroupDistance, this.showSpeed, this.useKnots});
 }
