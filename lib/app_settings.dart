@@ -1,7 +1,13 @@
 class AppSettings {
   int smGroupDistance;
-  bool showSpeed;
   bool useKnots;
+  String topMsg;
+  String bottomMsg;
 
-  AppSettings({this.smGroupDistance, this.showSpeed, this.useKnots});
+  AppSettings({
+    this.smGroupDistance,
+    this.useKnots,
+    this.topMsg,
+    this.bottomMsg,
+  });
 }

@@ -57,10 +57,10 @@ class _SettingsState extends State<SettingsPage> {
                 endIndent: 0,
               ),
               SwitchListTile(
-                title: Text('Show speed'),
-                value: state.showSpeed,
+                title: Text('Use Knots'),
+                value: state.useKnots,
                 onChanged: (value) {
-                  context.read<AppSettingsCubit>().setShowSpeed(value);
+                  context.read<AppSettingsCubit>().setUseKnots(value);
                 },
               ),
               const Divider(
@@ -69,20 +69,39 @@ class _SettingsState extends State<SettingsPage> {
                 indent: 0,
                 endIndent: 0,
               ),
-              SwitchListTile(
-                title: Text('Use Knots'),
-                value: state.useKnots,
-                onChanged: state.showSpeed
-                    ? (value) {
-                        context.read<AppSettingsCubit>().setUseKnots(value);
-                      }
-                    : null,
+              ExpansionTile(
+                title: Text('Top Message'),
+                children: [
+                  TextFormField(
+                    decoration:
+                        InputDecoration(labelText: 'Enter top message:'),
+                    initialValue: state.topMsg,
+                    autofocus: true,
+                    onChanged: (input) {
+                      context.read<AppSettingsCubit>().setTopMsg(input);
+                    },
+                  ),
+                ],
               ),
               const Divider(
                 height: 1,
                 thickness: 1,
                 indent: 0,
                 endIndent: 0,
+              ),
+              ExpansionTile(
+                title: Text('Bottom Message'),
+                children: [
+                  TextFormField(
+                    decoration:
+                        InputDecoration(labelText: 'Enter bottom message:'),
+                    initialValue: state.bottomMsg,
+                    autofocus: true,
+                    onChanged: (input) {
+                      context.read<AppSettingsCubit>().setBottomMsg(input);
+                    },
+                  ),
+                ],
               ),
             ],
           );
