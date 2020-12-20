@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:settings_ui/settings_ui.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'app_settings.dart';
+import 'app_settings_cubit.dart';
 
 class SettingsPage extends StatefulWidget {
   // const SpeedWidget({Key key}) : super(key: key);
@@ -12,64 +16,46 @@ class _SettingsState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Settings'),
-        ),
-        body: SettingsList(
-          sections: [
-            SettingsSection(
-              title: 'Section',
-              tiles: [
-                SettingsTile(
-                  title: 'Language',
-                  subtitle: 'English',
-                  leading: Icon(Icons.language),
-                  onPressed: (BuildContext context) {},
-                ),
-                // SettingsTile.switchTile(
-                //   title: 'Use fingerprint',
-                //   leading: Icon(Icons.fingerprint),
-                //   switchValue: value,
-                //   onToggle: (bool value) {},
-                // ),
-              ],
-            ),
-          ],
-        ));
+      appBar: AppBar(
+        title: Text('Settings'),
+        backgroundColor: ThemeData.dark().primaryColor,
+        centerTitle: false,
+      ),
+      body: BlocBuilder<AppSettingsCubit, AppSettings>(
+        builder: (context, state) {
+          return ListView(
+            padding: const EdgeInsets.all(8),
+            children: <Widget>[
+              ExpansionTile(
+                title: Text(
+                    'Separation Distance: ' + state.smGroupDistance.toString()),
+                children: <Widget>[
+                  TextFormField(
+                    decoration: InputDecoration(labelText: "Enter your number"),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+                    initialValue: state.smGroupDistance.toString(),
+                    autofocus: true,
+                    onChanged: (input) {
+                      context
+                          .read<AppSettingsCubit>()
+                          .setSmGroupDistance(int.parse(input));
+                    },
+                  ),
+                ],
+              ),
+              const Divider(
+                height: 1,
+                thickness: 1,
+                indent: 0,
+                endIndent: 0,
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 }
-
-// class _SettingsState extends State<SettingsPage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Settings'),
-//       ),
-//       body: BlocBuilder<AppSettingsCubit, AppSettings>(
-//           builder: (BuildContext context, AppSettings state) {
-//         return SettingsList(
-//           sections: [
-//             SettingsSection(
-//               title: 'Section',
-//               tiles: [
-//                 SettingsTile(
-//                   title: 'Group Separation Distance',
-//                   subtitle: '$state.smGroupDistance',
-//                   leading: Icon(Icons.language),
-//                   onPressed: (BuildContext context) {},
-//                 ),
-//                 // SettingsTile.switchTile(
-//                 //   title: 'Use fingerprint',
-//                 //   leading: Icon(Icons.fingerprint),
-//                 //   switchValue: value,
-//                 //   onToggle: (bool value) {},
-//                 // ),
-//               ],
-//             ),
-//           ],
-//         );
-//       }),
-//     );
-//   }
-// }

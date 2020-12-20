@@ -13,7 +13,9 @@ class AppSettingsCubit extends HydratedCubit<AppSettings> {
   Map<String, dynamic> toJson(AppSettings state) =>
       {'smGroupDistance': state.smGroupDistance};
 
-  void setAppSettings(AppSettings appSettings) {
-    emit(appSettings);
+  void setSmGroupDistance(int dist) {
+    AppSettings newState = AppSettings();
+    newState.smGroupDistance = dist;
+    emit(newState);
   }
 }

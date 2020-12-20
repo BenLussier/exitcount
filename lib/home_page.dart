@@ -18,9 +18,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          title: Text('ExitCount™'),
           backgroundColor: ThemeData.dark().primaryColor,
           centerTitle: false,
-          title: Text('ExitCount™'),
           actions: <Widget>[
             MoreMenu(),
           ]),
