@@ -3,24 +3,31 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'app_settings.dart';
 
 class AppSettingsCubit extends HydratedCubit<AppSettings> {
-  AppSettingsCubit() : super(AppSettings());
+  AppSettingsCubit()
+      : super(AppSettings(
+          smGroupDistance: 1500,
+          units: Units.Imperial,
+          useKnots: true,
+          topMsg: 'Valid after cut or green light',
+          bottomMsg: 'Double time for large groups',
+        ));
 
   @override
   AppSettings fromJson(Map<String, dynamic> json) => AppSettings(
-        smGroupDistance: json['smGroupDistance'] ?? 1500,
-        units: Units.values[json['units']] ?? Units.Imperial,
-        useKnots: json['useKnots'] ?? true,
-        topMsg: json['topMsg'] ?? 'Valid after cut or green light',
-        bottomMsg: json['bottomMsg'] ?? 'Double time for large groups',
+        smGroupDistance: json['smGroupDistance'],
+        units: Units.values[json['units']],
+        useKnots: json['useKnots'],
+        topMsg: json['topMsg'],
+        bottomMsg: json['bottomMsg'],
       );
 
   @override
   Map<String, dynamic> toJson(AppSettings state) => {
-        'smGroupDistance': state.smGroupDistance ?? 1500,
-        'units': state.units.index ?? Units.Imperial.index,
-        'useKnots': state.useKnots ?? true,
-        'topMsg': state.topMsg ?? 'Valid after cut or green light',
-        'bottomMsg': state.bottomMsg ?? 'Double time for large groups',
+        'smGroupDistance': state.smGroupDistance,
+        'units': state.units.index,
+        'useKnots': state.useKnots,
+        'topMsg': state.topMsg,
+        'bottomMsg': state.bottomMsg,
       };
 
   void setSmGroupDistance(int dist) {
