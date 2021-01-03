@@ -27,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: BlocBuilder<AppSettingsCubit, AppSettings>(
         builder: (context, state) {
           return Container(
-            padding: const EdgeInsets.all(32),
+            padding: const EdgeInsets.all(16),
             child: Column(
               children: <Widget>[
                 Text(state.topMsg),
