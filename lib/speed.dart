@@ -102,6 +102,7 @@ class _SpeedState extends State<SpeedWidget> {
                 Text(
                   _separation,
                   style: TextStyle(
+                    fontSize: 150,
                     fontWeight: FontWeight.bold,
                     fontFeatures: [
                       FontFeature.tabularFigures(),
@@ -111,6 +112,7 @@ class _SpeedState extends State<SpeedWidget> {
                 Text(
                   'SEC',
                   style: TextStyle(
+                    fontSize: 45,
                     fontWeight: FontWeight.bold,
                     fontFeatures: [
                       FontFeature.tabularFigures(),
@@ -125,6 +127,7 @@ class _SpeedState extends State<SpeedWidget> {
                 Text(
                   _speed,
                   style: TextStyle(
+                    fontSize: 50,
                     fontWeight: FontWeight.bold,
                     fontFeatures: [
                       FontFeature.tabularFigures(),
@@ -134,6 +137,7 @@ class _SpeedState extends State<SpeedWidget> {
                 Text(
                   _units,
                   style: TextStyle(
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
                     fontFeatures: [
                       FontFeature.tabularFigures(),
