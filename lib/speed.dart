@@ -161,7 +161,7 @@ class _SpeedState extends State<SpeedWidget> {
                         ? Colors.red
                         : Theme.of(context).textTheme.bodyText1.color,
                     fontFamily: 'Roboto Mono',
-                    fontSize: 50,
+                    fontSize: 75,
                     fontWeight: FontWeight.w700,
                     fontFeatures: [
                       FontFeature.tabularFigures(),
