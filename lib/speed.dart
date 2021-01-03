@@ -16,7 +16,8 @@ class SpeedWidget extends StatefulWidget {
 }
 
 class _SpeedState extends State<SpeedWidget> {
-  double _rawSpeed;
+  double _rawSpeed = -1;
+  double _speedConst;
   String _speed;
   String _units;
   String _separation;
@@ -74,24 +75,28 @@ class _SpeedState extends State<SpeedWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<AppSettingsCubit, AppSettings>(
       builder: (context, state) {
-        if (_rawSpeed != null && _rawSpeed >= 0) {
-          if (state.useKnots) {
-            _speed = (_rawSpeed * 1.944).round().toString();
-            _units = 'KTS';
-          } else {
-            if (state.units == Units.Imperial) {
-              _speed = (_rawSpeed * 2.237).round().toString();
-              _units = 'MPH';
-            } else {
-              _speed = (_rawSpeed * 3.6).round().toString();
-              _units = 'KPH';
-            }
-          }
-          // #TODO: separation calculation
-          _separation = '3';
+        if (state.useKnots) {
+          _speedConst = 1.944;
+          _units = 'KTS';
+        } else if (state.units == Units.Imperial) {
+          _speedConst = 2.237;
+          _units = 'MPH';
         } else {
+          _speedConst = 3.6;
+          _units = 'KPH';
+        }
+        if (_rawSpeed < 0) {
           _separation = '--';
           _speed = '--';
+        } else {
+          if (state.units == Units.Imperial) {
+            _separation =
+                (state.smGroupDistance / (_rawSpeed * 3.28)).round().toString();
+          } else {
+            _separation =
+                (state.smGroupDistance / _rawSpeed).round().toString();
+          }
+          _speed = (_rawSpeed * _speedConst).round().toString();
         }
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -102,6 +107,7 @@ class _SpeedState extends State<SpeedWidget> {
                 Text(
                   _separation,
                   style: TextStyle(
+                    color: _separation == '--' ? Colors.red : Colors.green,
                     fontSize: 150,
                     fontWeight: FontWeight.bold,
                     fontFeatures: [
@@ -127,6 +133,7 @@ class _SpeedState extends State<SpeedWidget> {
                 Text(
                   _speed,
                   style: TextStyle(
+                    color: _speed == '--' ? Colors.red : Colors.green,
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
                     fontFeatures: [
