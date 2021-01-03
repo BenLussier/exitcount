@@ -30,11 +30,11 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.all(32),
             child: Column(
               children: <Widget>[
-                Text('Top Msg: ' + state.topMsg),
-                SpeedWidget(),
-                Text(state.smGroupDistance.toString()),
-                Text('Use knots: ' + state.useKnots.toString()),
-                Text('Bottom Msg: ' + state.bottomMsg),
+                Text(state.topMsg),
+                Expanded(
+                  child: SpeedWidget(),
+                ),
+                Text(state.bottomMsg),
               ],
             ),
           );

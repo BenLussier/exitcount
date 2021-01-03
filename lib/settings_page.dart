@@ -29,15 +29,20 @@ class _SettingsState extends State<SettingsPage> {
               ExpansionTile(
                 title: Row(
                   children: [
+                    Text('Separation: '),
                     Text(state.smGroupDistance.toString(),
                         style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text("' Separation"),
+                    Text(state.units == Units.Imperial ? ' ft' : ' m',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                   ],
                 ),
                 children: [
                   TextFormField(
                     decoration: InputDecoration(
-                        labelText: 'Enter group separation in feet:'),
+                        labelText: 'Enter group separation in ' +
+                            (state.units == Units.Imperial
+                                ? 'feet:'
+                                : 'meters:')),
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     initialValue: state.smGroupDistance.toString(),
@@ -56,11 +61,48 @@ class _SettingsState extends State<SettingsPage> {
                 indent: 0,
                 endIndent: 0,
               ),
+              ExpansionTile(
+                title: Row(
+                  children: [
+                    Text("Units: "),
+                    Text(state.units == Units.Imperial ? 'Imperial' : 'Metric',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                children: [
+                  RadioListTile<Units>(
+                    title: const Text('Imperial (ft, mph)'),
+                    value: Units.Imperial,
+                    groupValue: state.units,
+                    onChanged: (Units value) {
+                      setState(() {
+                        context.read<AppSettingsCubit>().setUnits(value);
+                      });
+                    },
+                  ),
+                  RadioListTile<Units>(
+                    title: const Text('Metric (m, kph)'),
+                    value: Units.Metric,
+                    groupValue: state.units,
+                    onChanged: (Units value) {
+                      setState(() {
+                        context.read<AppSettingsCubit>().setUnits(value);
+                      });
+                    },
+                  ),
+                ],
+              ),
+              const Divider(
+                height: 1,
+                thickness: 1,
+                indent: 0,
+                endIndent: 0,
+              ),
               SwitchListTile(
                 title: Column(
                   children: [
                     Text('Use Knots'),
-                    Text('Use knots instead of'),
+                    Text('Display speed in knots instead of'),
                   ],
                 ),
                 value: state.useKnots,

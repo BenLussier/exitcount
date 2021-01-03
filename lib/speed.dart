@@ -1,6 +1,11 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
+
+import 'app_settings.dart';
+import 'app_settings_cubit.dart';
 
 // #TODO: This appears to crash app probably if permissions aren't granted
 class SpeedWidget extends StatefulWidget {
@@ -11,8 +16,10 @@ class SpeedWidget extends StatefulWidget {
 }
 
 class _SpeedState extends State<SpeedWidget> {
-  String _error;
+  double _rawSpeed;
   String _speed;
+  String _units;
+  String _separation;
 
   Timer timer;
 
@@ -32,25 +39,26 @@ class _SpeedState extends State<SpeedWidget> {
   Position _position;
   void startTimer() {
     positionStream = Geolocator.getPositionStream(
-            desiredAccuracy: LocationAccuracy.high, distanceFilter: 1)
-        .listen((Position position) {
+      desiredAccuracy: LocationAccuracy.high,
+      distanceFilter: 1,
+    ).listen((Position position) {
       _position = position;
-      // #TODO: handle speed = -1
       setState(() {
-        _speed = position.speed.toString();
+        _rawSpeed = position.speed;
       });
     }, onError: (error) {
-      // #TODO: Need to handle the stream being canceled.
       setState(() {
-        _speed = 'error';
+        _rawSpeed = -1;
       });
+      timer?.cancel();
+      startTimer(); // Restarts stream properly?
     });
     timer = Timer.periodic(Duration(seconds: 2), (Timer t) async {
       if (_position != null) {
         Duration diff = DateTime.now().difference(_position.timestamp);
         if (diff > Duration(seconds: 2)) {
           setState(() {
-            _speed = '--';
+            _rawSpeed = -1;
           });
         }
       }
@@ -64,14 +72,80 @@ class _SpeedState extends State<SpeedWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Text(
-          // 'Timer Speed: ' + (_error ?? '${_locationData?.speed ?? "unknown"}'),
-          'Speed: ' + (_error ?? _speed ?? 'unknown'),
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-      ],
+    return BlocBuilder<AppSettingsCubit, AppSettings>(
+      builder: (context, state) {
+        if (_rawSpeed != null && _rawSpeed >= 0) {
+          if (state.useKnots) {
+            _speed = (_rawSpeed * 1.944).round().toString();
+            _units = 'KTS';
+          } else {
+            if (state.units == Units.Imperial) {
+              _speed = (_rawSpeed * 2.237).round().toString();
+              _units = 'MPH';
+            } else {
+              _speed = (_rawSpeed * 3.6).round().toString();
+              _units = 'KPH';
+            }
+          }
+          // #TODO: separation calculation
+          _separation = '3';
+        } else {
+          _separation = '--';
+          _speed = '--';
+        }
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Text(
+                  _separation,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFeatures: [
+                      FontFeature.tabularFigures(),
+                    ],
+                  ),
+                ),
+                Text(
+                  'SEC',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFeatures: [
+                      FontFeature.tabularFigures(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Text(
+                  _speed,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFeatures: [
+                      FontFeature.tabularFigures(),
+                    ],
+                  ),
+                ),
+                Text(
+                  _units,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFeatures: [
+                      FontFeature.tabularFigures(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            // Text(_rawSpeed.toString()),
+          ],
+        );
+      },
     );
   }
 }
