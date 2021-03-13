@@ -107,7 +107,7 @@ class _SpeedState extends State<SpeedWidget> {
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.baseline,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 if (_separationText == '--' || _separation >= 99)
                   Text(
@@ -131,6 +131,7 @@ class _SpeedState extends State<SpeedWidget> {
                     fontFamily: 'Roboto Mono',
                     fontSize: 200,
                     fontWeight: FontWeight.w700,
+                    height: 0.90,
                     letterSpacing: -10,
                     fontFeatures: [
                       FontFeature.tabularFigures(),
@@ -139,6 +140,7 @@ class _SpeedState extends State<SpeedWidget> {
                 ),
                 Text(
                   'SEC',
+                  textAlign: TextAlign.left,
                   style: TextStyle(
                     fontFamily: 'Roboto Mono',
                     fontSize: 30,
@@ -146,13 +148,14 @@ class _SpeedState extends State<SpeedWidget> {
                     fontFeatures: [
                       FontFeature.tabularFigures(),
                     ],
+                    height: 0.90,
                   ),
                 ),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.baseline,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
                   _speed,
@@ -166,17 +169,20 @@ class _SpeedState extends State<SpeedWidget> {
                     fontFeatures: [
                       FontFeature.tabularFigures(),
                     ],
+                    height: 0.9,
                   ),
                 ),
                 Text(
                   _units,
+                  textAlign: TextAlign.left,
                   style: TextStyle(
                     fontFamily: 'Roboto Mono',
                     fontSize: 30,
                     fontWeight: FontWeight.w400,
-                    // fontFeatures: [
-                    //   FontFeature.tabularFigures(),
-                    // ],
+                    fontFeatures: [
+                      FontFeature.tabularFigures(),
+                    ],
+                    height: 0.9,
                   ),
                 ),
               ],

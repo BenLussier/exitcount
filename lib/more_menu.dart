@@ -13,7 +13,7 @@ class MoreMenu extends StatelessWidget {
             Navigator.of(context).pushNamed('/settings');
             break;
           case MenuItem.info:
-            Navigator.of(context).pushNamed('/settings');
+            Navigator.of(context).pushNamed('/info');
             break;
         }
       },

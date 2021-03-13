@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+
 import 'app_settings.dart';
 import 'app_settings_cubit.dart';
 import 'more_menu.dart';
@@ -30,11 +32,47 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: <Widget>[
-                Text(state.topMsg),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        child: AutoSizeText(
+                          state.topMsg,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.purple,
+                            fontSize: 60,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          maxLines: 3,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 Expanded(
                   child: SpeedWidget(),
                 ),
-                Text(state.bottomMsg),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        child: AutoSizeText(
+                          state.bottomMsg,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.pink,
+                            fontSize: 60,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          maxLines: 3,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           );
