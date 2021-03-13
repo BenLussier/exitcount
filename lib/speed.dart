@@ -95,12 +95,18 @@ class _SpeedState extends State<SpeedWidget> {
           } else {
             _separation = (state.smGroupDistance / _rawSpeed).round();
           }
+
+          // _separation = 7;
+
           if (_separation >= 99) {
             _separationText = '99';
           } else {
             _separationText = _separation.toString();
           }
           _speed = (_rawSpeed * _speedConst).round().toString();
+
+          // _separationText = '--';
+          // _speed = '108';
         }
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -109,14 +115,14 @@ class _SpeedState extends State<SpeedWidget> {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                if (_separationText == '--' || _separation >= 99)
+                if (_separation >= 99)
                   Text(
                     '+',
                     style: TextStyle(
                       color: Colors.red,
                       fontFamily: 'Roboto Mono',
-                      fontSize: 60,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 100,
+                      fontWeight: FontWeight.bold,
                       fontFeatures: [
                         FontFeature.tabularFigures(),
                       ],
@@ -129,9 +135,9 @@ class _SpeedState extends State<SpeedWidget> {
                         ? Colors.red
                         : Colors.green,
                     fontFamily: 'Roboto Mono',
-                    fontSize: 200,
-                    fontWeight: FontWeight.w700,
-                    height: 0.90,
+                    fontSize: 225,
+                    fontWeight: FontWeight.bold,
+                    height: 0.9,
                     letterSpacing: -10,
                     fontFeatures: [
                       FontFeature.tabularFigures(),
@@ -144,11 +150,39 @@ class _SpeedState extends State<SpeedWidget> {
                   style: TextStyle(
                     fontFamily: 'Roboto Mono',
                     fontSize: 30,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.bold,
                     fontFeatures: [
                       FontFeature.tabularFigures(),
                     ],
-                    height: 0.90,
+                    height: 0.9,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  state.smGroupDistance.toString(),
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    fontSize: 70,
+                    fontWeight: FontWeight.bold,
+                    height: 0.9,
+                  ),
+                ),
+                Text(
+                  state.units == Units.Imperial ? 'FT ' : 'M  ',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontFamily: 'Roboto Mono',
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    fontFeatures: [
+                      FontFeature.tabularFigures(),
+                    ],
+                    height: 0.9,
                   ),
                 ),
               ],
@@ -164,8 +198,8 @@ class _SpeedState extends State<SpeedWidget> {
                         ? Colors.red
                         : Theme.of(context).textTheme.bodyText1.color,
                     fontFamily: 'Roboto Mono',
-                    fontSize: 75,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 55,
+                    fontWeight: FontWeight.bold,
                     fontFeatures: [
                       FontFeature.tabularFigures(),
                     ],
@@ -178,7 +212,7 @@ class _SpeedState extends State<SpeedWidget> {
                   style: TextStyle(
                     fontFamily: 'Roboto Mono',
                     fontSize: 30,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.bold,
                     fontFeatures: [
                       FontFeature.tabularFigures(),
                     ],
@@ -187,7 +221,6 @@ class _SpeedState extends State<SpeedWidget> {
                 ),
               ],
             ),
-            // Text(_rawSpeed.toString()),
           ],
         );
       },

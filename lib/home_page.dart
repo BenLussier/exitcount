@@ -33,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               children: <Widget>[
                 Expanded(
+                  flex: 3,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -41,20 +42,23 @@ class _MyHomePageState extends State<MyHomePage> {
                           state.topMsg,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Colors.purple,
+                            color: Colors.grey,
                             fontSize: 60,
                             fontWeight: FontWeight.w700,
                           ),
-                          maxLines: 3,
+                          minFontSize: 45,
+                          maxLines: 4,
                         ),
                       ),
                     ],
                   ),
                 ),
                 Expanded(
+                  flex: 5,
                   child: SpeedWidget(),
                 ),
                 Expanded(
+                  flex: 3,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -63,11 +67,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           state.bottomMsg,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Colors.pink,
+                            color: Colors.grey,
                             fontSize: 60,
                             fontWeight: FontWeight.w700,
                           ),
-                          maxLines: 3,
+                          minFontSize: 45,
+                          maxLines: 4,
                         ),
                       ),
                     ],
