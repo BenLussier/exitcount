@@ -24,7 +24,7 @@ class MoreMenu extends StatelessWidget {
         ),
         const PopupMenuItem<MenuItem>(
           value: MenuItem.info,
-          child: Text('Info'),
+          child: Text('App Info'),
         )
       ],
     );
