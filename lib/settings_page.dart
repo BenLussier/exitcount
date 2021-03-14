@@ -6,8 +6,6 @@ import 'app_settings.dart';
 import 'app_settings_cubit.dart';
 
 class SettingsPage extends StatefulWidget {
-  // const SpeedWidget({Key key}) : super(key: key);
-
   @override
   _SettingsState createState() => _SettingsState();
 }
@@ -30,28 +28,35 @@ class _SettingsState extends State<SettingsPage> {
                 title: Row(
                   children: [
                     Text('Separation: '),
-                    Text(state.smGroupDistance.toString(),
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text(state.units == Units.Imperial ? ' ft' : ' m',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(
+                      state.smGroupDistance.toString(),
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      state.units == Units.Imperial ? ' ft' : ' m',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ],
                 ),
                 children: [
-                  TextFormField(
-                    decoration: InputDecoration(
-                        labelText: 'Enter group separation in ' +
-                            (state.units == Units.Imperial
-                                ? 'feet:'
-                                : 'meters:')),
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    initialValue: state.smGroupDistance.toString(),
-                    autofocus: true,
-                    onChanged: (input) {
-                      context
-                          .read<AppSettingsCubit>()
-                          .setSmGroupDistance(int.parse(input));
-                    },
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                          labelText: 'Enter group separation in ' +
+                              (state.units == Units.Imperial
+                                  ? 'feet:'
+                                  : 'meters:')),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      initialValue: state.smGroupDistance.toString(),
+                      autofocus: true,
+                      onChanged: (input) {
+                        context
+                            .read<AppSettingsCubit>()
+                            .setSmGroupDistance(int.parse(input));
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -65,8 +70,10 @@ class _SettingsState extends State<SettingsPage> {
                 title: Row(
                   children: [
                     Text("Units: "),
-                    Text(state.units == Units.Imperial ? 'Imperial' : 'Metric',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(
+                      state.units == Units.Imperial ? 'Imperial' : 'Metric',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ],
                 ),
                 children: [
@@ -100,9 +107,19 @@ class _SettingsState extends State<SettingsPage> {
               ),
               SwitchListTile(
                 title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Use Knots'),
-                    Text('Display speed in knots instead of'),
+                    Row(
+                      children: [
+                        Text('Use knots: '),
+                        Text(
+                          state.useKnots ? 'Yes' : 'No',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Text('Display speed in knots instead of ' +
+                        (state.units == Units.Imperial ? 'mph' : 'kph')),
                   ],
                 ),
                 value: state.useKnots,
@@ -119,14 +136,17 @@ class _SettingsState extends State<SettingsPage> {
               ExpansionTile(
                 title: Text('Top Message'),
                 children: [
-                  TextFormField(
-                    decoration:
-                        InputDecoration(labelText: 'Enter top message:'),
-                    initialValue: state.topMsg,
-                    autofocus: true,
-                    onChanged: (input) {
-                      context.read<AppSettingsCubit>().setTopMsg(input);
-                    },
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                    child: TextFormField(
+                      decoration:
+                          InputDecoration(labelText: 'Enter top message:'),
+                      initialValue: state.topMsg,
+                      autofocus: true,
+                      onChanged: (input) {
+                        context.read<AppSettingsCubit>().setTopMsg(input);
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -139,14 +159,17 @@ class _SettingsState extends State<SettingsPage> {
               ExpansionTile(
                 title: Text('Bottom Message'),
                 children: [
-                  TextFormField(
-                    decoration:
-                        InputDecoration(labelText: 'Enter bottom message:'),
-                    initialValue: state.bottomMsg,
-                    autofocus: true,
-                    onChanged: (input) {
-                      context.read<AppSettingsCubit>().setBottomMsg(input);
-                    },
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                    child: TextFormField(
+                      decoration:
+                          InputDecoration(labelText: 'Enter bottom message:'),
+                      initialValue: state.bottomMsg,
+                      autofocus: true,
+                      onChanged: (input) {
+                        context.read<AppSettingsCubit>().setBottomMsg(input);
+                      },
+                    ),
                   ),
                 ],
               ),
