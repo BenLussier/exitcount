@@ -236,19 +236,20 @@ class _SpeedState extends State<SpeedWidget> {
             // _speed = '108';
           }
           return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  if (_separation >= 99)
+                  if (_separation != null && _separation >= 99)
                     Text(
-                      '+',
+                      '>',
                       style: TextStyle(
                         color: Colors.red,
                         fontFamily: 'Roboto Mono',
-                        fontSize: 100,
+                        fontSize: 50,
                         fontWeight: FontWeight.bold,
                         fontFeatures: [
                           FontFeature.tabularFigures(),
@@ -262,10 +263,10 @@ class _SpeedState extends State<SpeedWidget> {
                           ? Colors.red
                           : Colors.green,
                       fontFamily: 'Roboto Mono',
-                      fontSize: 225,
+                      fontSize: 300,
                       fontWeight: FontWeight.bold,
                       height: 0.9,
-                      letterSpacing: -10,
+                      letterSpacing: -20,
                       fontFeatures: [
                         FontFeature.tabularFigures(),
                       ],
@@ -273,80 +274,94 @@ class _SpeedState extends State<SpeedWidget> {
                   ),
                   Text(
                     'SEC',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontFamily: 'Roboto Mono',
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      fontFeatures: [
-                        FontFeature.tabularFigures(),
-                      ],
-                      height: 0.9,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    state.smGroupDistance.toString(),
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      fontSize: 70,
-                      fontWeight: FontWeight.bold,
-                      height: 0.9,
-                    ),
-                  ),
-                  Text(
-                    state.units == Units.Imperial ? 'FT ' : 'M  ',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
                       fontFamily: 'Roboto Mono',
-                      fontSize: 30,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                       fontFeatures: [
                         FontFeature.tabularFigures(),
                       ],
-                      height: 0.9,
+                      height: 1.5,
                     ),
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    _speed,
-                    style: TextStyle(
-                      color: _speed == '--'
-                          ? Colors.red
-                          : Theme.of(context).textTheme.bodyText1.color,
-                      fontFamily: 'Roboto Mono',
-                      fontSize: 55,
-                      fontWeight: FontWeight.bold,
-                      fontFeatures: [
-                        FontFeature.tabularFigures(),
-                      ],
-                      height: 0.9,
+              IntrinsicHeight(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      _speed,
+                      style: TextStyle(
+                        color: _speed == '--'
+                            ? Colors.red
+                            : Theme.of(context).textTheme.bodyText1.color,
+                        fontFamily: 'Roboto Mono',
+                        fontSize: 70,
+                        fontWeight: FontWeight.bold,
+                        fontFeatures: [
+                          FontFeature.tabularFigures(),
+                        ],
+                        height: 0.9,
+                      ),
                     ),
-                  ),
-                  Text(
-                    _units,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontFamily: 'Roboto Mono',
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      fontFeatures: [
-                        FontFeature.tabularFigures(),
-                      ],
-                      height: 0.9,
+                    Text(
+                      _units,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Roboto Mono',
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        fontFeatures: [
+                          FontFeature.tabularFigures(),
+                        ],
+                        height: 0.9,
+                      ),
                     ),
-                  ),
-                ],
+                    VerticalDivider(
+                      width: 16,
+                      thickness: 2,
+                      indent: 0,
+                      endIndent: 0,
+                    ),
+                    Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              state.smGroupDistance.toString(),
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                                height: 0.9,
+                              ),
+                            ),
+                            Text(
+                              state.units == Units.Imperial ? 'FT ' : 'M  ',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontFamily: 'Roboto Mono',
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                fontFeatures: [
+                                  FontFeature.tabularFigures(),
+                                ],
+                                height: 0.9,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          'SEPARATION',
+                          style: TextStyle(),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           );

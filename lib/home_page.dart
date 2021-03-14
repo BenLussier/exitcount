@@ -30,7 +30,11 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               children: <Widget>[
                 Expanded(
-                  flex: 3,
+                  flex: 5,
+                  child: SpeedWidget(),
+                ),
+                Expanded(
+                  flex: 2,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -51,11 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Expanded(
-                  flex: 5,
-                  child: SpeedWidget(),
-                ),
-                Expanded(
-                  flex: 3,
+                  flex: 2,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
