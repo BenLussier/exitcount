@@ -8,9 +8,6 @@ import 'more_menu.dart';
 import 'speed.dart';
 
 class MyHomePage extends StatefulWidget {
-  // const MyHomePage({Key key, this.title}) : super(key: key);
-  // final String title;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }

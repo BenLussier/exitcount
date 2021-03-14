@@ -8,10 +8,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'app_settings.dart';
 import 'app_settings_cubit.dart';
 
-// #TODO: This appears to crash app probably if permissions aren't granted
 class SpeedWidget extends StatefulWidget {
-  // const SpeedWidget({Key key}) : super(key: key);
-
   @override
   _SpeedState createState() => _SpeedState();
 }
@@ -40,73 +37,71 @@ class _SpeedState extends State<SpeedWidget> {
 
   StreamSubscription<Position> positionStream;
   Position _position;
-  void startTimer() async {
-    bool serviceEnabled;
-    LocationPermission permission;
+  void startTimer() {
+    // if (serviceEnabled &&
+    //     (permission == LocationPermission.always ||
+    //         permission == LocationPermission.whileInUse)) {}
 
-    // Test if location services are enabled.
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      // Location services are not enabled don't continue
-      // accessing the position and request users of the
-      // App to enable the location services.
+    positionStream = Geolocator.getPositionStream(
+      desiredAccuracy: LocationAccuracy.high,
+      distanceFilter: 1,
+    ).listen((Position position) {
+      _position = position;
       setState(() {
-        _rawSpeed = -3;
+        _rawSpeed = position.speed;
       });
-    }
+    }, onError: (error) async {
+      bool serviceEnabled;
+      LocationPermission permission;
 
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.deniedForever) {
-        // Permissions are denied forever, handle appropriately.
+      // Test if location services are enabled.
+      serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        // Location services are not enabled don't continue
+        // accessing the position and request users of the
+        // App to enable the location services.
         setState(() {
-          _rawSpeed = -4;
+          _rawSpeed = -3;
         });
       }
 
+      permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
-        // Permissions are denied, next time you could try
-        // requesting permissions again (this is also where
-        // Android's shouldShowRequestPermissionRationale
-        // returned true. According to Android guidelines
-        // your App should show an explanatory UI now.
-        setState(() {
-          _rawSpeed = -2;
-        });
-      }
-    }
-    if (serviceEnabled &&
-        (permission == LocationPermission.always ||
-            permission == LocationPermission.whileInUse)) {
-      positionStream = Geolocator.getPositionStream(
-        desiredAccuracy: LocationAccuracy.high,
-        distanceFilter: 1,
-      ).listen((Position position) {
-        _position = position;
-        setState(() {
-          _rawSpeed = position.speed;
-        });
-      }, onError: (error) {
-        setState(() {
-          _rawSpeed = -5;
-        });
-        timer?.cancel();
-        startTimer(); // Restarts stream properly?
-      });
-      timer = Timer.periodic(Duration(seconds: 2), (Timer t) async {
-        if (_position != null) {
-          Duration diff = DateTime.now().difference(_position.timestamp);
-          if (diff > Duration(seconds: 2)) {
-            setState(() {
-              _rawSpeed = -1;
-            });
-          }
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.deniedForever) {
+          // Permissions are denied forever, handle appropriately.
+          setState(() {
+            _rawSpeed = -4;
+          });
         }
-      });
-    } else {
+
+        if (permission == LocationPermission.denied) {
+          // Permissions are denied, next time you could try
+          // requesting permissions again (this is also where
+          // Android's shouldShowRequestPermissionRationale
+          // returned true. According to Android guidelines
+          // your App should show an explanatory UI now.
+          setState(() {
+            _rawSpeed = -2;
+          });
+        }
+      }
+      // setState(() {
+      //   _rawSpeed = -5;
+      // });
+      timer?.cancel();
       startTimer(); // Restarts stream properly?
-    }
+    });
+    timer = Timer.periodic(Duration(seconds: 2), (Timer t) async {
+      if (_position != null) {
+        Duration diff = DateTime.now().difference(_position.timestamp);
+        if (diff > Duration(seconds: 2)) {
+          setState(() {
+            _rawSpeed = -1;
+          });
+        }
+      }
+    });
   }
 
   void stopTimer() async {
