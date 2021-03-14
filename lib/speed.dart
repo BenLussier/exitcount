@@ -239,57 +239,61 @@ class _SpeedState extends State<SpeedWidget> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  if (_separation != null && _separation >= 99)
+              Text(
+                'SECONDS BETWEEN GROUPS:',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Divider(
+                height: 16,
+                thickness: 2,
+                indent: 0,
+                endIndent: 0,
+              ),
+              Container(
+                padding: const EdgeInsets.only(top: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    if (_separation != null && _separation >= 99)
+                      Text(
+                        '>',
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontFamily: 'Roboto Mono',
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                          fontFeatures: [
+                            FontFeature.tabularFigures(),
+                          ],
+                        ),
+                      ),
                     Text(
-                      '>',
+                      _separationText,
                       style: TextStyle(
-                        color: Colors.red,
+                        color: _separationText == '--' || _separation >= 99
+                            ? Colors.red
+                            : Colors.green,
                         fontFamily: 'Roboto Mono',
-                        fontSize: 50,
+                        fontSize: 300,
                         fontWeight: FontWeight.bold,
+                        height: 0.9,
+                        letterSpacing: -20,
                         fontFeatures: [
                           FontFeature.tabularFigures(),
                         ],
                       ),
                     ),
-                  Text(
-                    _separationText,
-                    style: TextStyle(
-                      color: _separationText == '--' || _separation >= 99
-                          ? Colors.red
-                          : Colors.green,
-                      fontFamily: 'Roboto Mono',
-                      fontSize: 300,
-                      fontWeight: FontWeight.bold,
-                      height: 0.9,
-                      letterSpacing: -20,
-                      fontFeatures: [
-                        FontFeature.tabularFigures(),
-                      ],
-                    ),
-                  ),
-                  Text(
-                    'SEC',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      fontFamily: 'Roboto Mono',
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      fontFeatures: [
-                        FontFeature.tabularFigures(),
-                      ],
-                      height: 1.5,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               IntrinsicHeight(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
