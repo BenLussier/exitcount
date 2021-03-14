@@ -327,8 +327,12 @@ class _SpeedState extends State<SpeedWidget> {
                       endIndent: 0,
                     ),
                     Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
                               state.smGroupDistance.toString(),
@@ -344,7 +348,7 @@ class _SpeedState extends State<SpeedWidget> {
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 fontFamily: 'Roboto Mono',
-                                fontSize: 30,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 fontFeatures: [
                                   FontFeature.tabularFigures(),
@@ -356,7 +360,11 @@ class _SpeedState extends State<SpeedWidget> {
                         ),
                         Text(
                           'SEPARATION',
-                          style: TextStyle(),
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ],
                     ),
