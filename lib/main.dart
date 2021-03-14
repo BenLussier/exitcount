@@ -8,6 +8,7 @@ import 'app_settings_cubit.dart';
 import 'home_page.dart';
 import 'settings_page.dart';
 import 'info_page.dart';
+import 'donate_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // protect calls before runApp()
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => MyHomePage(),
           '/settings': (context) => SettingsPage(),
           '/info': (context) => InfoPage(),
+          '/donate': (context) => DonatePage(),
         },
       ),
     );
