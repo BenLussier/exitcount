@@ -24,7 +24,7 @@ class AppSettingsCubit extends HydratedCubit<AppSettings> {
   @override
   Map<String, dynamic> toJson(AppSettings state) => {
         'smGroupDistance': state.smGroupDistance,
-        'units': state.units.index,
+        'units': state.units?.index,
         'useKnots': state.useKnots,
         'topMsg': state.topMsg,
         'bottomMsg': state.bottomMsg,
@@ -42,7 +42,7 @@ class AppSettingsCubit extends HydratedCubit<AppSettings> {
     emit(newState);
   }
 
-  void setUnits(Units units) {
+  void setUnits(Units? units) {
     AppSettings newState = AppSettings(
       smGroupDistance: state.smGroupDistance,
       units: state.units,

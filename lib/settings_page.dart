@@ -81,7 +81,7 @@ class _SettingsState extends State<SettingsPage> {
                     title: const Text('Imperial (ft, mph)'),
                     value: Units.Imperial,
                     groupValue: state.units,
-                    onChanged: (Units value) {
+                    onChanged: (Units? value) {
                       setState(() {
                         context.read<AppSettingsCubit>().setUnits(value);
                       });
@@ -91,7 +91,7 @@ class _SettingsState extends State<SettingsPage> {
                     title: const Text('Metric (m, kph)'),
                     value: Units.Metric,
                     groupValue: state.units,
-                    onChanged: (Units value) {
+                    onChanged: (Units? value) {
                       setState(() {
                         context.read<AppSettingsCubit>().setUnits(value);
                       });

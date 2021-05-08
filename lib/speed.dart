@@ -15,13 +15,13 @@ class SpeedWidget extends StatefulWidget {
 
 class _SpeedState extends State<SpeedWidget> {
   double _rawSpeed = -1;
-  double _speedConst;
-  String _speed;
-  String _units;
-  int _separation;
-  String _separationText;
+  double _speedConst = 0;
+  String _speed = '';
+  String _units = '';
+  int _separation = 0;
+  String _separationText = '';
 
-  Timer timer;
+  late Timer timer;
 
   @override
   void initState() {
@@ -35,8 +35,8 @@ class _SpeedState extends State<SpeedWidget> {
     super.dispose();
   }
 
-  StreamSubscription<Position> positionStream;
-  Position _position;
+  late StreamSubscription<Position> positionStream;
+  late Position _position;
   void startTimer() {
     // if (serviceEnabled &&
     //     (permission == LocationPermission.always ||
@@ -89,24 +89,22 @@ class _SpeedState extends State<SpeedWidget> {
       // setState(() {
       //   _rawSpeed = -5;
       // });
-      timer?.cancel();
+      timer.cancel();
       startTimer(); // Restarts stream properly?
     });
     timer = Timer.periodic(Duration(seconds: 2), (Timer t) async {
-      if (_position != null) {
-        Duration diff = DateTime.now().difference(_position.timestamp);
-        if (diff > Duration(seconds: 2)) {
-          setState(() {
-            _rawSpeed = -1;
-          });
-        }
+      Duration diff = DateTime.now().difference(_position.timestamp!);
+      if (diff > Duration(seconds: 2)) {
+        setState(() {
+          _rawSpeed = -1;
+        });
       }
     });
   }
 
   void stopTimer() async {
-    timer?.cancel();
-    await positionStream?.cancel();
+    timer.cancel();
+    await positionStream.cancel();
   }
 
   void openAppSettings() async {
@@ -223,7 +221,7 @@ class _SpeedState extends State<SpeedWidget> {
               _separation = (state.smGroupDistance / _rawSpeed).round();
             }
 
-            // _separation = 7;
+            // _separation = 7; // un-comment to test
 
             if (_separation >= 99) {
               _separationText = '99';
@@ -232,20 +230,25 @@ class _SpeedState extends State<SpeedWidget> {
             }
             _speed = (_rawSpeed * _speedConst).round().toString();
 
-            // _separationText = '--';
-            // _speed = '108';
+            // _separationText = '--'; // un-comment to test
+            // _speed = '108'; // un-comment to test
           }
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-              Text(
-                'SECONDS BETWEEN GROUPS:',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'SECONDS BETWEEN GROUPS:',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
               Divider(
                 height: 16,
@@ -259,7 +262,7 @@ class _SpeedState extends State<SpeedWidget> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    if (_separation != null && _separation >= 99)
+                    if (_separation >= 99)
                       Text(
                         '>',
                         style: TextStyle(
@@ -291,7 +294,13 @@ class _SpeedState extends State<SpeedWidget> {
                   ],
                 ),
               ),
-              IntrinsicHeight(
+              Divider(
+                height: 16,
+                thickness: 2,
+                indent: 0,
+                endIndent: 0,
+              ),
+              Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -301,7 +310,7 @@ class _SpeedState extends State<SpeedWidget> {
                       style: TextStyle(
                         color: _speed == '--'
                             ? Colors.red
-                            : Theme.of(context).textTheme.bodyText1.color,
+                            : Theme.of(context).textTheme.bodyText1!.color,
                         fontFamily: 'Roboto Mono',
                         fontSize: 70,
                         fontWeight: FontWeight.bold,
@@ -326,7 +335,7 @@ class _SpeedState extends State<SpeedWidget> {
                     ),
                     VerticalDivider(
                       width: 16,
-                      thickness: 2,
+                      thickness: 10,
                       indent: 0,
                       endIndent: 0,
                     ),
