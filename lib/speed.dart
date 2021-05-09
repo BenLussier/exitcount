@@ -235,24 +235,22 @@ class _SpeedState extends State<SpeedWidget> {
           }
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'SECONDS BETWEEN GROUPS:',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+              AutoSizeText(
+                'SECONDS BETWEEN GROUPS:',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 60,
+                  fontWeight: FontWeight.bold,
+                ),
+                minFontSize: 10,
+                maxFontSize: 60,
+                maxLines: 1,
               ),
               Divider(
                 height: 16,
-                thickness: 2,
+                thickness: 3,
                 indent: 0,
                 endIndent: 0,
               ),
@@ -284,7 +282,7 @@ class _SpeedState extends State<SpeedWidget> {
                         fontFamily: 'Roboto Mono',
                         fontSize: 300,
                         fontWeight: FontWeight.bold,
-                        height: 0.9,
+                        height: .9,
                         letterSpacing: -20,
                         fontFeatures: [
                           FontFeature.tabularFigures(),
@@ -296,11 +294,12 @@ class _SpeedState extends State<SpeedWidget> {
               ),
               Divider(
                 height: 16,
-                thickness: 2,
+                thickness: 3,
                 indent: 0,
                 endIndent: 0,
               ),
               Container(
+                height: 70, // needed for vertical divider to show
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -335,7 +334,7 @@ class _SpeedState extends State<SpeedWidget> {
                     ),
                     VerticalDivider(
                       width: 16,
-                      thickness: 10,
+                      thickness: 3,
                       indent: 0,
                       endIndent: 0,
                     ),
