@@ -1,14 +1,49 @@
+// {
+//   // Use IntelliSense to learn about possible attributes.
+//   // Hover to view descriptions of existing attributes.
+//   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+//   "version": "0.2.0",
+//   "configurations": [
+//     {
+//       "name": "Flutter",
+//       "type": "dart",
+//       "request": "launch",
+//       "program": "lib/main.dart"
+//     }
+//   ]
+// }
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-    {
-      "name": "Flutter",
-      "type": "dart",
-      "request": "launch",
-      "program": "lib/main.dart"
-    }
-  ]
+      {
+          "name": "Flutter-All",
+          "preLaunchTask": "Flutter-Launch-All",
+          "type": "dart",
+          "request": "launch",
+      },
+      {
+          "name": "Flutter-iPhone",
+          "preLaunchTask": "Flutter-Launch-iPhone",
+          "type": "dart",
+          "request": "launch",
+      },
+      {
+        "name": "Flutter-iPad",
+        "preLaunchTask": "Flutter-Launch-iPad",
+        "type": "dart",
+        "request": "launch",
+      },
+      {
+          "name": "Flutter-Android",
+          "preLaunchTask": "Flutter-Launch-Android",
+          "type": "dart",
+          "request": "launch",
+          "deviceId": "android",
+      },
+      // {
+      //     "name": "Flutter-Web",
+      //     "preLaunchTask": "Flutter-Launch-Web",
+      //     "type": "dart",
+      // }
+  ],
 }
