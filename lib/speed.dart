@@ -221,7 +221,7 @@ class _SpeedState extends State<SpeedWidget> {
               _separation = (state.smGroupDistance / _rawSpeed).round();
             }
 
-            // _separation = 7; // un-comment to test
+            // _separation = 100; // un-comment to test
 
             if (_separation >= 99) {
               _separationText = '99';
@@ -230,7 +230,7 @@ class _SpeedState extends State<SpeedWidget> {
             }
             _speed = (_rawSpeed * _speedConst).round().toString();
 
-            // _separationText = '--'; // un-comment to test
+            _separationText = '9g'; // un-comment to test
             // _speed = '108'; // un-comment to test
           }
           return Column(
@@ -256,49 +256,63 @@ class _SpeedState extends State<SpeedWidget> {
               ),
               Container(
                 padding: const EdgeInsets.only(top: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    if (_separation >= 99)
-                      Text(
-                        '>',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontFamily: 'Roboto Mono',
-                          fontSize: 50,
-                          fontWeight: FontWeight.bold,
-                          fontFeatures: [
-                            FontFeature.tabularFigures(),
-                          ],
+                child: AspectRatio(
+                  aspectRatio: 2 / 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          _separation >= 99 ? '>' : ' ',
+                          textAlign: TextAlign.end,
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontFamily: 'Roboto Mono',
+                            fontSize: 50,
+                            fontWeight: FontWeight.bold,
+                            height: .9,
+                            fontFeatures: [
+                              FontFeature.tabularFigures(),
+                            ],
+                          ),
                         ),
                       ),
-                    Text(
-                      _separationText,
-                      style: TextStyle(
-                        color: _separationText == '--' || _separation >= 99
-                            ? Colors.red
-                            : Colors.green,
-                        fontFamily: 'Roboto Mono',
-                        fontSize: 300,
-                        fontWeight: FontWeight.bold,
-                        height: .9,
-                        letterSpacing: -20,
-                        fontFeatures: [
-                          FontFeature.tabularFigures(),
-                        ],
+                      Expanded(
+                        flex: 4,
+                        child: AutoSizeText(
+                          _separationText,
+                          textAlign: TextAlign.end,
+                          style: TextStyle(
+                            color: _separationText == '--' || _separation >= 99
+                                ? Colors.red
+                                : Colors.green,
+                            fontFamily: 'Bebas',
+                            fontSize: 600,
+                            height: .9,
+                            letterSpacing: -20,
+                            // fontFeatures: [
+                            //   FontFeature.tabularFigures(),
+                            // ],
+                          ),
+                          minFontSize: 100,
+                          maxFontSize: 600,
+                          maxLines: 1,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Divider(
-                height: 16,
+                height: 0,
                 thickness: 3,
                 indent: 0,
                 endIndent: 0,
               ),
               Container(
+                padding: const EdgeInsets.only(top: 8),
                 height: 70, // needed for vertical divider to show
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

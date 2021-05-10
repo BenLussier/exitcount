@@ -33,48 +33,48 @@ class _MyHomePageState extends State<MyHomePage> {
                   flex: 5,
                   child: SpeedWidget(),
                 ),
-                Expanded(
-                  flex: 2,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Expanded(
-                        child: AutoSizeText(
-                          state.topMsg,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 60,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          minFontSize: 45,
-                          maxLines: 4,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Expanded(
-                        child: AutoSizeText(
-                          state.bottomMsg,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 60,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          minFontSize: 45,
-                          maxLines: 4,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Expanded(
+                //   flex: 2,
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: <Widget>[
+                //       Expanded(
+                //         child: AutoSizeText(
+                //           state.topMsg,
+                //           textAlign: TextAlign.center,
+                //           style: TextStyle(
+                //             color: Colors.grey,
+                //             fontSize: 60,
+                //             fontWeight: FontWeight.w700,
+                //           ),
+                //           minFontSize: 45,
+                //           maxLines: 4,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // Expanded(
+                //   flex: 2,
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: <Widget>[
+                //       Expanded(
+                //         child: AutoSizeText(
+                //           state.bottomMsg,
+                //           textAlign: TextAlign.center,
+                //           style: TextStyle(
+                //             color: Colors.grey,
+                //             fontSize: 60,
+                //             fontWeight: FontWeight.w700,
+                //           ),
+                //           minFontSize: 45,
+                //           maxLines: 4,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           );

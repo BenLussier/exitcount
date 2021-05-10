@@ -75,3 +75,7 @@ flutter:
           weight: 400
         - asset: fonts/RobotoMono-Light.ttf
           weight: 300
+    - family: Bebas
+      fonts:
+        - asset: fonts/Bebas-Regular.ttf
+          weight: 400
