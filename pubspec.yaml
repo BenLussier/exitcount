@@ -63,19 +63,34 @@ flutter:
   # https://flutter.dev/assets-and-images/#from-packages
 
   fonts:
-    - family: Roboto Mono
+    - family: OpenSans
       fonts:
-        - asset: fonts/RobotoMono-Bold.ttf
+        - asset: fonts/OpenSans-ExtraBold.ttf
+          weight: 800
+        - asset: fonts/OpenSans-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: fonts/OpenSans-Bold.ttf
           weight: 700
-        - asset: fonts/RobotoMono-SemiBold.ttf
+        - asset: fonts/OpenSans-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: fonts/OpenSans-SemiBold.ttf
           weight: 600
-        - asset: fonts/RobotoMono-Medium.ttf
-          weight: 500
-        - asset: fonts/RobotoMono-Regular.ttf
+        - asset: fonts/OpenSans-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: fonts/OpenSans-Regular.ttf
           weight: 400
-        - asset: fonts/RobotoMono-Light.ttf
+        - asset: fonts/OpenSans-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: fonts/OpenSans-Light.ttf
           weight: 300
-    - family: Bebas
+        - asset: fonts/OpenSans-LightItalic.ttf
+          weight: 300
+          style: italic
+    - family: DMMono
       fonts:
-        - asset: fonts/Bebas-Regular.ttf
+        - asset: fonts/DMMono-Medium-NoLead.ttf
           weight: 400

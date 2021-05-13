@@ -230,32 +230,37 @@ class _SpeedState extends State<SpeedWidget> {
             }
             _speed = (_rawSpeed * _speedConst).round().toString();
 
-            _separationText = '9g'; // un-comment to test
+            // _separationText = '99'; // un-comment to test
             // _speed = '108'; // un-comment to test
           }
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              AutoSizeText(
-                'SECONDS BETWEEN GROUPS:',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 60,
-                  fontWeight: FontWeight.bold,
+              Container(
+                decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.purple)),
+                child: AutoSizeText(
+                  'SECONDS BETWEEN GROUPS:',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 60,
+                    fontWeight: FontWeight.bold,
+                    height: 1,
+                  ),
+                  minFontSize: 10,
+                  maxFontSize: 60,
+                  maxLines: 1,
                 ),
-                minFontSize: 10,
-                maxFontSize: 60,
-                maxLines: 1,
               ),
               Divider(
-                height: 16,
+                height: 0,
                 thickness: 3,
                 indent: 0,
                 endIndent: 0,
               ),
               Container(
-                padding: const EdgeInsets.only(top: 16),
+                padding: const EdgeInsets.only(top: 16, bottom: 16),
                 child: AspectRatio(
                   aspectRatio: 2 / 1,
                   child: Row(
@@ -264,23 +269,22 @@ class _SpeedState extends State<SpeedWidget> {
                     children: <Widget>[
                       Expanded(
                         flex: 1,
-                        child: Text(
+                        child: AutoSizeText(
                           _separation >= 99 ? '>' : ' ',
                           textAlign: TextAlign.end,
                           style: TextStyle(
                             color: Colors.red,
-                            fontFamily: 'Roboto Mono',
-                            fontSize: 50,
+                            fontFamily: 'DMMono',
+                            fontSize: 100,
                             fontWeight: FontWeight.bold,
-                            height: .9,
-                            fontFeatures: [
-                              FontFeature.tabularFigures(),
-                            ],
                           ),
+                          minFontSize: 10,
+                          maxFontSize: 100,
+                          maxLines: 1,
                         ),
                       ),
                       Expanded(
-                        flex: 4,
+                        flex: 5,
                         child: AutoSizeText(
                           _separationText,
                           textAlign: TextAlign.end,
@@ -288,13 +292,8 @@ class _SpeedState extends State<SpeedWidget> {
                             color: _separationText == '--' || _separation >= 99
                                 ? Colors.red
                                 : Colors.green,
-                            fontFamily: 'Bebas',
+                            fontFamily: 'DMMono',
                             fontSize: 600,
-                            height: .9,
-                            letterSpacing: -20,
-                            // fontFeatures: [
-                            //   FontFeature.tabularFigures(),
-                            // ],
                           ),
                           minFontSize: 100,
                           maxFontSize: 600,
@@ -324,7 +323,7 @@ class _SpeedState extends State<SpeedWidget> {
                         color: _speed == '--'
                             ? Colors.red
                             : Theme.of(context).textTheme.bodyText1!.color,
-                        fontFamily: 'Roboto Mono',
+                        fontFamily: 'OpenSans',
                         fontSize: 70,
                         fontWeight: FontWeight.bold,
                         fontFeatures: [
@@ -337,7 +336,7 @@ class _SpeedState extends State<SpeedWidget> {
                       _units,
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                        fontFamily: 'Roboto Mono',
+                        fontFamily: 'OpenSans',
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                         fontFeatures: [
@@ -373,7 +372,7 @@ class _SpeedState extends State<SpeedWidget> {
                               state.units == Units.Imperial ? 'FT ' : 'M  ',
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                fontFamily: 'Roboto Mono',
+                                fontFamily: 'OpenSans',
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 fontFeatures: [
