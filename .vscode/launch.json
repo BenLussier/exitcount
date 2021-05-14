@@ -40,6 +40,12 @@
           "request": "launch",
           "deviceId": "android",
       },
+      {
+        "name": "Flutter-Basic",
+        "type": "dart",
+        "request": "launch",
+        "program": "lib/main.dart"
+      }
       // {
       //     "name": "Flutter-Web",
       //     "preLaunchTask": "Flutter-Launch-Web",
