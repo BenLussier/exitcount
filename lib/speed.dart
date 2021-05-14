@@ -345,6 +345,7 @@ class _SpeedState extends State<SpeedWidget> {
                         ),
                         minFontSize: 10,
                         maxFontSize: 300,
+                        maxLines: 1,
                       ),
                       // KTS / MPH / KPH
                       FractionallySizedBox(
@@ -374,13 +375,49 @@ class _SpeedState extends State<SpeedWidget> {
                       ),
                       // state.smGroupDistance.toString(),
                       // state.units == Units.Imperial ? 'FT' : 'M ',
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text('1000FT'),
-                          Text('SEPARATION'),
-                        ],
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 1,
+                            color: Colors.pink,
+                          ),
+                        ),
+                        child: AspectRatio(
+                          aspectRatio: 2 / 1,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              AspectRatio(
+                                aspectRatio: 3 / 1,
+                                child: AutoSizeText(
+                                  state.smGroupDistance.toString(),
+                                  style: TextStyle(
+                                    fontFamily: 'DMMono',
+                                    fontSize: 300,
+                                  ),
+                                  minFontSize: 10,
+                                  maxFontSize: 300,
+                                  maxLines: 1,
+                                ),
+                              ),
+                              AspectRatio(
+                                aspectRatio: 6 / 1,
+                                child: AutoSizeText(
+                                  'SEPARATION',
+                                  style: TextStyle(
+                                    fontFamily: 'OpenSans',
+                                    fontSize: 300,
+                                    height: 0.9,
+                                  ),
+                                  minFontSize: 10,
+                                  maxFontSize: 300,
+                                  maxLines: 1,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
