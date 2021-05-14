@@ -86,9 +86,6 @@ class _SpeedState extends State<SpeedWidget> {
           });
         }
       }
-      // setState(() {
-      //   _rawSpeed = -5;
-      // });
       timer.cancel();
       startTimer(); // Restarts stream properly?
     });
@@ -119,6 +116,7 @@ class _SpeedState extends State<SpeedWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<AppSettingsCubit, AppSettings>(
       builder: (context, state) {
+        // _rawSpeed = -5; //uncomment to test
         if (_rawSpeed == -3) {
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -211,6 +209,7 @@ class _SpeedState extends State<SpeedWidget> {
             _units = 'KPH';
           }
           if (_rawSpeed < 0) {
+            _separation = 0;
             _separationText = '--';
             _speed = '--';
           } else {
@@ -220,7 +219,6 @@ class _SpeedState extends State<SpeedWidget> {
             } else {
               _separation = (state.smGroupDistance / _rawSpeed).round();
             }
-
             // _separation = 100; // un-comment to test
 
             if (_separation >= 99) {
@@ -228,9 +226,9 @@ class _SpeedState extends State<SpeedWidget> {
             } else {
               _separationText = _separation.toString();
             }
-            _speed = (_rawSpeed * _speedConst).round().toString();
-
             // _separationText = '99'; // un-comment to test
+
+            _speed = (_rawSpeed * _speedConst).round().toString();
             // _speed = '108'; // un-comment to test
           }
           return Column(
@@ -239,11 +237,16 @@ class _SpeedState extends State<SpeedWidget> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.purple)),
+                  border: Border.all(
+                    width: 1,
+                    color: Colors.purple,
+                  ),
+                ),
                 child: AutoSizeText(
                   'SECONDS BETWEEN GROUPS:',
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    fontFamily: 'OpenSans',
                     fontSize: 60,
                     fontWeight: FontWeight.bold,
                     height: 1,
@@ -260,6 +263,12 @@ class _SpeedState extends State<SpeedWidget> {
                 endIndent: 0,
               ),
               Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1,
+                    color: Colors.purple,
+                  ),
+                ),
                 padding: const EdgeInsets.only(top: 16, bottom: 16),
                 child: AspectRatio(
                   aspectRatio: 2 / 1,
@@ -311,89 +320,70 @@ class _SpeedState extends State<SpeedWidget> {
                 endIndent: 0,
               ),
               Container(
-                padding: const EdgeInsets.only(top: 8),
-                height: 70, // needed for vertical divider to show
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      _speed,
-                      style: TextStyle(
-                        color: _speed == '--'
-                            ? Colors.red
-                            : Theme.of(context).textTheme.bodyText1!.color,
-                        fontFamily: 'OpenSans',
-                        fontSize: 70,
-                        fontWeight: FontWeight.bold,
-                        fontFeatures: [
-                          FontFeature.tabularFigures(),
-                        ],
-                        height: 0.9,
-                      ),
-                    ),
-                    Text(
-                      _units,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontFamily: 'OpenSans',
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        fontFeatures: [
-                          FontFeature.tabularFigures(),
-                        ],
-                        height: 0.9,
-                      ),
-                    ),
-                    VerticalDivider(
-                      width: 16,
-                      thickness: 3,
-                      indent: 0,
-                      endIndent: 0,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              state.smGroupDistance.toString(),
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold,
-                                height: 0.9,
-                              ),
-                            ),
-                            Text(
-                              state.units == Units.Imperial ? 'FT ' : 'M  ',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontFamily: 'OpenSans',
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                fontFeatures: [
-                                  FontFeature.tabularFigures(),
-                                ],
-                                height: 0.9,
-                              ),
-                            ),
-                          ],
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1,
+                    color: Colors.orange,
+                  ),
+                ),
+                // padding: const EdgeInsets.only(top: 8, bottom: 8),
+                child: AspectRatio(
+                  aspectRatio: 5 / 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      // SPEED
+                      AutoSizeText(
+                        _speed,
+                        style: TextStyle(
+                          color: _speed == '--'
+                              ? Colors.red
+                              : Theme.of(context).textTheme.bodyText1!.color,
+                          fontFamily: 'DMMono',
+                          fontSize: 300,
                         ),
-                        Text(
-                          'SEPARATION',
+                        minFontSize: 10,
+                        maxFontSize: 300,
+                      ),
+                      // KTS / MPH / KPH
+                      FractionallySizedBox(
+                        alignment: Alignment.center,
+                        heightFactor: 0.5,
+                        child: AutoSizeText(
+                          _units,
                           textAlign: TextAlign.left,
                           style: TextStyle(
-                            fontSize: 20,
+                            fontFamily: 'OpenSans',
+                            fontSize: 300,
                             fontWeight: FontWeight.bold,
+                            fontFeatures: [
+                              FontFeature.tabularFigures(),
+                            ],
+                            height: 0.9,
                           ),
+                          minFontSize: 10,
+                          maxFontSize: 300,
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      VerticalDivider(
+                        width: 16,
+                        thickness: 3,
+                        indent: 0,
+                        endIndent: 0,
+                      ),
+                      // state.smGroupDistance.toString(),
+                      // state.units == Units.Imperial ? 'FT' : 'M ',
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text('1000FT'),
+                          Text('SEPARATION'),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
