@@ -29,52 +29,50 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: <Widget>[
+                // Expanded(
+                //   flex: 5,
+                //   child: SpeedWidget(),
+                // ),
+                SpeedWidget(),
                 Expanded(
-                  flex: 5,
-                  child: SpeedWidget(),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      // TOP MESSAGE
+                      AutoSizeText(
+                        state.topMsg,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 60,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        minFontSize: 10,
+                        maxFontSize: 100,
+                        maxLines: 4,
+                      ),
+                      Divider(
+                        height: 32,
+                        thickness: 3,
+                        indent: 0,
+                        endIndent: 0,
+                      ),
+                      // BOT MESSAGE
+                      AutoSizeText(
+                        state.bottomMsg,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 60,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        minFontSize: 10,
+                        maxFontSize: 100,
+                        maxLines: 4,
+                      ),
+                    ],
+                  ),
                 ),
-                // Expanded(
-                //   flex: 2,
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: <Widget>[
-                //       Expanded(
-                //         child: AutoSizeText(
-                //           state.topMsg,
-                //           textAlign: TextAlign.center,
-                //           style: TextStyle(
-                //             color: Colors.grey,
-                //             fontSize: 60,
-                //             fontWeight: FontWeight.w700,
-                //           ),
-                //           minFontSize: 45,
-                //           maxLines: 4,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // Expanded(
-                //   flex: 2,
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: <Widget>[
-                //       Expanded(
-                //         child: AutoSizeText(
-                //           state.bottomMsg,
-                //           textAlign: TextAlign.center,
-                //           style: TextStyle(
-                //             color: Colors.grey,
-                //             fontSize: 60,
-                //             fontWeight: FontWeight.w700,
-                //           ),
-                //           minFontSize: 45,
-                //           maxLines: 4,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
               ],
             ),
           );
