@@ -229,19 +229,20 @@ class _SpeedState extends State<SpeedWidget> {
             // _separationText = '99'; // un-comment to test
 
             _speed = (_rawSpeed * _speedConst).round().toString();
-            // _speed = '108'; // un-comment to test
+            _speed = '208'; // un-comment to test
           }
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              // SECONDS BETWEEN GROUPS:
               Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 1,
-                    color: Colors.purple,
-                  ),
-                ),
+                // decoration: BoxDecoration(
+                //   border: Border.all(
+                //     width: 1,
+                //     color: Colors.purple,
+                //   ),
+                // ),
                 child: AutoSizeText(
                   'SECONDS BETWEEN GROUPS:',
                   textAlign: TextAlign.center,
@@ -257,25 +258,20 @@ class _SpeedState extends State<SpeedWidget> {
                 ),
               ),
               Divider(
-                height: 0,
+                height: 32,
                 thickness: 3,
                 indent: 0,
                 endIndent: 0,
               ),
+              // > SEC
               Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 1,
-                    color: Colors.purple,
-                  ),
-                ),
-                padding: const EdgeInsets.only(top: 16, bottom: 16),
                 child: AspectRatio(
                   aspectRatio: 2 / 1,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      // >
                       Expanded(
                         flex: 1,
                         child: AutoSizeText(
@@ -292,6 +288,7 @@ class _SpeedState extends State<SpeedWidget> {
                           maxLines: 1,
                         ),
                       ),
+                      // SEC
                       Expanded(
                         flex: 5,
                         child: AutoSizeText(
@@ -314,21 +311,15 @@ class _SpeedState extends State<SpeedWidget> {
                 ),
               ),
               Divider(
-                height: 0,
+                height: 32,
                 thickness: 3,
                 indent: 0,
                 endIndent: 0,
               ),
+              // SPEED KTS | DIST' SEPARATION
               Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 1,
-                    color: Colors.orange,
-                  ),
-                ),
-                // padding: const EdgeInsets.only(top: 8, bottom: 8),
                 child: AspectRatio(
-                  aspectRatio: 5 / 1,
+                  aspectRatio: 6 / 1,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -347,10 +338,10 @@ class _SpeedState extends State<SpeedWidget> {
                         maxFontSize: 300,
                         maxLines: 1,
                       ),
-                      // KTS / MPH / KPH
+                      // KTS
                       FractionallySizedBox(
                         alignment: Alignment.center,
-                        heightFactor: 0.5,
+                        heightFactor: 0.4,
                         child: AutoSizeText(
                           _units,
                           textAlign: TextAlign.left,
@@ -368,60 +359,39 @@ class _SpeedState extends State<SpeedWidget> {
                         ),
                       ),
                       VerticalDivider(
-                        width: 16,
+                        width: 32,
                         thickness: 3,
                         indent: 0,
                         endIndent: 0,
                       ),
-                      // state.smGroupDistance.toString(),
-                      // state.units == Units.Imperial ? 'FT' : 'M ',
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
-                            color: Colors.pink,
+                      // DIST' SEPARATION
+                      FractionallySizedBox(
+                        alignment: Alignment.center,
+                        heightFactor: 0.8,
+                        child: AutoSizeText(
+                          state.smGroupDistance.toString() +
+                              (state.units == Units.Imperial ? "'" : 'm'),
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            fontFamily: 'OpenSans',
+                            fontSize: 300,
+                            fontWeight: FontWeight.w600,
+                            height: 0.9,
                           ),
-                        ),
-                        child: AspectRatio(
-                          aspectRatio: 2 / 1,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              AspectRatio(
-                                aspectRatio: 3 / 1,
-                                child: AutoSizeText(
-                                  state.smGroupDistance.toString(),
-                                  style: TextStyle(
-                                    fontFamily: 'DMMono',
-                                    fontSize: 300,
-                                  ),
-                                  minFontSize: 10,
-                                  maxFontSize: 300,
-                                  maxLines: 1,
-                                ),
-                              ),
-                              AspectRatio(
-                                aspectRatio: 6 / 1,
-                                child: AutoSizeText(
-                                  'SEPARATION',
-                                  style: TextStyle(
-                                    fontFamily: 'OpenSans',
-                                    fontSize: 300,
-                                    height: 0.9,
-                                  ),
-                                  minFontSize: 10,
-                                  maxFontSize: 300,
-                                  maxLines: 1,
-                                ),
-                              ),
-                            ],
-                          ),
+                          minFontSize: 10,
+                          maxFontSize: 300,
+                          maxLines: 1,
                         ),
                       ),
                     ],
                   ),
                 ),
+              ),
+              Divider(
+                height: 32,
+                thickness: 3,
+                indent: 0,
+                endIndent: 0,
               ),
             ],
           );
