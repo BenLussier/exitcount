@@ -8,6 +8,7 @@ class AppSettings {
   Units? units;
   bool useKnots;
   String topMsg;
+  String middleMsg;
   String bottomMsg;
 
   AppSettings({
@@ -15,6 +16,7 @@ class AppSettings {
     required this.units,
     required this.useKnots,
     required this.topMsg,
+    required this.middleMsg,
     required this.bottomMsg,
   });
 }

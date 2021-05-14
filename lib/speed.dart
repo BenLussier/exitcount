@@ -237,12 +237,6 @@ class _SpeedState extends State<SpeedWidget> {
             children: <Widget>[
               // SECONDS BETWEEN GROUPS:
               Container(
-                // decoration: BoxDecoration(
-                //   border: Border.all(
-                //     width: 1,
-                //     color: Colors.purple,
-                //   ),
-                // ),
                 child: AutoSizeText(
                   'SECONDS BETWEEN GROUPS:',
                   textAlign: TextAlign.center,
@@ -318,12 +312,6 @@ class _SpeedState extends State<SpeedWidget> {
               ),
               // SPEED KTS | DIST' SEPARATION
               Container(
-                // decoration: BoxDecoration(
-                //   border: Border.all(
-                //     width: 1,
-                //     color: Colors.orange,
-                //   ),
-                // ),
                 child: AspectRatio(
                   aspectRatio: 6 / 1,
                   child: Row(

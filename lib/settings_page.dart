@@ -134,13 +134,13 @@ class _SettingsState extends State<SettingsPage> {
                 endIndent: 0,
               ),
               ExpansionTile(
-                title: Text('Top Message'),
+                title: Text('1st Message'),
                 children: [
                   Container(
                     padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                     child: TextFormField(
                       decoration:
-                          InputDecoration(labelText: 'Enter top message:'),
+                          InputDecoration(labelText: 'Enter 1st message:'),
                       initialValue: state.topMsg,
                       autofocus: true,
                       onChanged: (input) {
@@ -157,13 +157,36 @@ class _SettingsState extends State<SettingsPage> {
                 endIndent: 0,
               ),
               ExpansionTile(
-                title: Text('Bottom Message'),
+                title: Text('2nd Message'),
                 children: [
                   Container(
                     padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                     child: TextFormField(
                       decoration:
-                          InputDecoration(labelText: 'Enter bottom message:'),
+                          InputDecoration(labelText: 'Enter 2nd message:'),
+                      initialValue: state.middleMsg,
+                      autofocus: true,
+                      onChanged: (input) {
+                        context.read<AppSettingsCubit>().setMiddleMsg(input);
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              const Divider(
+                height: 1,
+                thickness: 1,
+                indent: 0,
+                endIndent: 0,
+              ),
+              ExpansionTile(
+                title: Text('3rd Message'),
+                children: [
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                    child: TextFormField(
+                      decoration:
+                          InputDecoration(labelText: 'Enter 3rd message:'),
                       initialValue: state.bottomMsg,
                       autofocus: true,
                       onChanged: (input) {

@@ -31,17 +31,13 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: <Widget>[
-                // Expanded(
-                //   flex: 5,
-                //   child: SpeedWidget(),
-                // ),
                 SpeedWidget(),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      // TOP MESSAGE
-                      AutoSizeText(
+                if (state.topMsg != '')
+                  // TOP MSG
+                  Expanded(
+                    flex: 1,
+                    child: Center(
+                      child: AutoSizeText(
                         state.topMsg,
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -53,14 +49,47 @@ class _MyHomePageState extends State<MyHomePage> {
                         maxFontSize: 100,
                         maxLines: 4,
                       ),
-                      Divider(
-                        height: 32,
-                        thickness: 3,
-                        indent: 0,
-                        endIndent: 0,
+                    ),
+                  ),
+                if (state.topMsg != '')
+                  Divider(
+                    height: 32,
+                    thickness: 3,
+                    indent: 0,
+                    endIndent: 0,
+                  ),
+                if (state.middleMsg != '')
+                  // MID MSG
+                  Expanded(
+                    flex: 1,
+                    child: Center(
+                      child: AutoSizeText(
+                        state.middleMsg,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 60,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        minFontSize: 10,
+                        maxFontSize: 100,
+                        maxLines: 4,
                       ),
-                      // BOT MESSAGE
-                      AutoSizeText(
+                    ),
+                  ),
+                if (state.bottomMsg != '')
+                  Divider(
+                    height: 32,
+                    thickness: 3,
+                    indent: 0,
+                    endIndent: 0,
+                  ),
+                if (state.bottomMsg != '')
+                  // BOT MSG
+                  Expanded(
+                    flex: 1,
+                    child: Center(
+                      child: AutoSizeText(
                         state.bottomMsg,
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -72,9 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         maxFontSize: 100,
                         maxLines: 4,
                       ),
-                    ],
+                    ),
                   ),
-                ),
               ],
             ),
           );

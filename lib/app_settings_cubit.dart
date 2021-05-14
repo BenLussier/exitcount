@@ -9,16 +9,18 @@ class AppSettingsCubit extends HydratedCubit<AppSettings> {
           units: Units.Imperial,
           useKnots: true,
           topMsg: 'ONLY Vaild @ Green Light',
-          bottomMsg: 'Lg Groups (6+) 1.5x Time',
+          middleMsg: 'Lg Groups (6+) 1.5x Time',
+          bottomMsg: 'Big Ways (10+) 2x Time',
         ));
 
   @override
   AppSettings fromJson(Map<String, dynamic> json) => AppSettings(
-        smGroupDistance: json['smGroupDistance'],
-        units: Units.values[json['units']],
-        useKnots: json['useKnots'],
-        topMsg: json['topMsg'],
-        bottomMsg: json['bottomMsg'],
+        smGroupDistance: json['smGroupDistance'] ?? 1500,
+        units: Units.values[json['units'] ?? Units.Imperial],
+        useKnots: json['useKnots'] ?? true,
+        topMsg: json['topMsg'] ?? 'ONLY Vaild @ Green Light',
+        middleMsg: json['middleMsg'] ?? 'Lg Groups (6+) 1.5x Time',
+        bottomMsg: json['bottomMsg'] ?? 'Big Ways (10+) 2x Time',
       );
 
   @override
@@ -27,6 +29,7 @@ class AppSettingsCubit extends HydratedCubit<AppSettings> {
         'units': state.units?.index,
         'useKnots': state.useKnots,
         'topMsg': state.topMsg,
+        'middleMsg': state.middleMsg,
         'bottomMsg': state.bottomMsg,
       };
 
@@ -36,6 +39,7 @@ class AppSettingsCubit extends HydratedCubit<AppSettings> {
       units: state.units,
       useKnots: state.useKnots,
       topMsg: state.topMsg,
+      middleMsg: state.middleMsg,
       bottomMsg: state.bottomMsg,
     );
     newState.smGroupDistance = dist;
@@ -48,6 +52,7 @@ class AppSettingsCubit extends HydratedCubit<AppSettings> {
       units: state.units,
       useKnots: state.useKnots,
       topMsg: state.topMsg,
+      middleMsg: state.middleMsg,
       bottomMsg: state.bottomMsg,
     );
     newState.units = units;
@@ -60,6 +65,7 @@ class AppSettingsCubit extends HydratedCubit<AppSettings> {
       units: state.units,
       useKnots: state.useKnots,
       topMsg: state.topMsg,
+      middleMsg: state.middleMsg,
       bottomMsg: state.bottomMsg,
     );
     newState.useKnots = use;
@@ -72,9 +78,23 @@ class AppSettingsCubit extends HydratedCubit<AppSettings> {
       units: state.units,
       useKnots: state.useKnots,
       topMsg: state.topMsg,
+      middleMsg: state.middleMsg,
       bottomMsg: state.bottomMsg,
     );
     newState.topMsg = msg;
+    emit(newState);
+  }
+
+  void setMiddleMsg(String msg) {
+    AppSettings newState = AppSettings(
+      smGroupDistance: state.smGroupDistance,
+      units: state.units,
+      useKnots: state.useKnots,
+      topMsg: state.topMsg,
+      middleMsg: state.middleMsg,
+      bottomMsg: state.bottomMsg,
+    );
+    newState.middleMsg = msg;
     emit(newState);
   }
 
@@ -84,6 +104,7 @@ class AppSettingsCubit extends HydratedCubit<AppSettings> {
       units: state.units,
       useKnots: state.useKnots,
       topMsg: state.topMsg,
+      middleMsg: state.middleMsg,
       bottomMsg: state.bottomMsg,
     );
     newState.bottomMsg = msg;
