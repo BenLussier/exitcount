@@ -8,8 +8,8 @@ class AppSettingsCubit extends HydratedCubit<AppSettings> {
           smGroupDistance: 1500,
           units: Units.Imperial,
           useKnots: true,
-          topMsg: 'Valid ONLY after cut or green light',
-          bottomMsg: 'Add time for large groups (6+)',
+          topMsg: 'ONLY Vaild @ Green Light',
+          bottomMsg: 'Lg Groups (6+) 1.5x Time',
         ));
 
   @override
