@@ -318,56 +318,72 @@ class _SpeedState extends State<SpeedWidget> {
               ),
               // SPEED KTS | DIST' SEPARATION
               Container(
+                // decoration: BoxDecoration(
+                //   border: Border.all(
+                //     width: 1,
+                //     color: Colors.orange,
+                //   ),
+                // ),
                 child: AspectRatio(
                   aspectRatio: 6 / 1,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      // SPEED
-                      AutoSizeText(
-                        _speed,
-                        style: TextStyle(
-                          color: _speed == '--'
-                              ? Colors.red
-                              : Theme.of(context).textTheme.bodyText1!.color,
-                          fontFamily: 'DMMono',
-                          fontSize: 300,
+                      AspectRatio(
+                        aspectRatio: 4 / 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            // SPEED
+                            AutoSizeText(
+                              _speed,
+                              style: TextStyle(
+                                color: _speed == '--'
+                                    ? Colors.red
+                                    : Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .color,
+                                fontFamily: 'DMMono',
+                                fontSize: 300,
+                              ),
+                              minFontSize: 10,
+                              maxFontSize: 300,
+                              maxLines: 1,
+                            ),
+                            // KTS
+                            FractionallySizedBox(
+                              alignment: Alignment.center,
+                              heightFactor: 0.4,
+                              child: AutoSizeText(
+                                _units,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontFamily: 'OpenSans',
+                                  fontSize: 300,
+                                  fontWeight: FontWeight.bold,
+                                  fontFeatures: [
+                                    FontFeature.tabularFigures(),
+                                  ],
+                                  height: 0.9,
+                                ),
+                                minFontSize: 10,
+                                maxFontSize: 300,
+                              ),
+                            ),
+                            VerticalDivider(
+                              width: 32,
+                              thickness: 3,
+                              indent: 0,
+                              endIndent: 0,
+                            ),
+                          ],
                         ),
-                        minFontSize: 10,
-                        maxFontSize: 300,
-                        maxLines: 1,
                       ),
-                      // KTS
-                      FractionallySizedBox(
-                        alignment: Alignment.center,
-                        heightFactor: 0.4,
-                        child: AutoSizeText(
-                          _units,
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'OpenSans',
-                            fontSize: 300,
-                            fontWeight: FontWeight.bold,
-                            fontFeatures: [
-                              FontFeature.tabularFigures(),
-                            ],
-                            height: 0.9,
-                          ),
-                          minFontSize: 10,
-                          maxFontSize: 300,
-                        ),
-                      ),
-                      VerticalDivider(
-                        width: 32,
-                        thickness: 3,
-                        indent: 0,
-                        endIndent: 0,
-                      ),
-                      // DIST' SEPARATION
-                      FractionallySizedBox(
-                        alignment: Alignment.center,
-                        heightFactor: 0.8,
+                      AspectRatio(
+                        aspectRatio: 2 / 1,
                         child: AutoSizeText(
                           state.smGroupDistance.toString() +
                               (state.units == Units.Imperial ? "'" : 'm'),
