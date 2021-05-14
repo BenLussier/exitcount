@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:wakelock/wakelock.dart';
 
 import 'app_settings.dart';
 import 'app_settings_cubit.dart';
@@ -15,6 +16,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    Wakelock.enable(); // keep screen on
     return Scaffold(
       appBar: AppBar(
           title: Text('ExitCount™'),
