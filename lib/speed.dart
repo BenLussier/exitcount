@@ -229,7 +229,7 @@ class _SpeedState extends State<SpeedWidget> {
             // _separationText = '99'; // un-comment to test
 
             _speed = (_rawSpeed * _speedConst).round().toString();
-            _speed = '208'; // un-comment to test
+            // _speed = '208'; // un-comment to test
           }
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
