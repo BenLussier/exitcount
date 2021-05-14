@@ -6,7 +6,15 @@
       "dependsOn": [
         "Flutter-Launch-iPhone",
         "Flutter-Launch-iPad",
+        "Flutter-Launch-Android",
         // "Flutter-Launch-Web"
+      ]
+    },
+    {
+      "label": "Flutter-Launch-iOS",
+      "dependsOn": [
+        "Flutter-Launch-iPhone",
+        "Flutter-Launch-iPad",
       ]
     },
     {
@@ -19,11 +27,11 @@
       "type": "shell",
       "command": "flutter run -d 'iPad' "
     },
-    // {
-    //   "label": "Flutter-Launch-Android",
-    //   "type": "shell",
-    //   "command": "flutter run -d 'AOSP on IA Emulator' "
-    // },
+    {
+      "label": "Flutter-Launch-Android",
+      "type": "shell",
+      "command": "flutter run -d 'AOSP on IA Emulator' "
+    },
     // {
     //   "label": "Flutter-Launch-Web",
     //   "type": "shell",
