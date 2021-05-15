@@ -50,7 +50,12 @@
         "preLaunchTask": "Flutter-Launch-Android",
         "type": "dart",
         "request": "launch",
-        "deviceId": "android",
+    },
+    {
+      "name": "Flutter-Pixel2XL",
+      "preLaunchTask": "Flutter-Launch-Pixel2XL",
+      "type": "dart",
+      "request": "launch",
     },
     
     // {

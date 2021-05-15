@@ -6,7 +6,7 @@
       "dependsOn": [
         "Flutter-Launch-iPhone",
         "Flutter-Launch-iPad",
-        "Flutter-Launch-Android",
+        "Flutter-Launch-Pixel2XL",
         // "Flutter-Launch-Web"
       ]
     },
@@ -30,7 +30,12 @@
     {
       "label": "Flutter-Launch-Android",
       "type": "shell",
-      "command": "flutter run -d 'AOSP on IA Emulator' "
+      "command": "flutter run -d 'emulator-name' "
+    },
+    {
+      "label": "Flutter-Launch-Pixel2XL",
+      "type": "shell",
+      "command": "flutter run -d 'Pixel 2 XL' "
     },
     // {
     //   "label": "Flutter-Launch-Web",
