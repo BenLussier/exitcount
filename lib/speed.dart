@@ -273,11 +273,11 @@ class _SpeedState extends State<SpeedWidget> {
                           style: TextStyle(
                             color: Colors.red,
                             fontFamily: 'DMMono',
-                            fontSize: 100,
+                            fontSize: 50,
                             fontWeight: FontWeight.bold,
                           ),
                           minFontSize: 10,
-                          maxFontSize: 100,
+                          maxFontSize: 50,
                           maxLines: 1,
                         ),
                       ),
