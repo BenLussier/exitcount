@@ -116,7 +116,7 @@ class _SpeedState extends State<SpeedWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<AppSettingsCubit, AppSettings>(
       builder: (context, state) {
-        // _rawSpeed = -5; //uncomment to test
+        // _rawSpeed = 0; //uncomment to test
         if (_rawSpeed == -3) {
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -208,16 +208,15 @@ class _SpeedState extends State<SpeedWidget> {
             _speedConst = 3.6;
             _units = 'KPH';
           }
-          if (_rawSpeed < 0) {
+          if (_rawSpeed <= 0) {
             _separation = 0;
             _separationText = '--';
             _speed = '--';
           } else {
             if (state.units == Units.Imperial) {
-              _separation =
-                  (state.smGroupDistance / (_rawSpeed * 3.28)).round();
+              _separation = (state.smGroupDistance / (_rawSpeed * 3.28)).ceil();
             } else {
-              _separation = (state.smGroupDistance / _rawSpeed).round();
+              _separation = (state.smGroupDistance / _rawSpeed).ceil();
             }
             // _separation = 100; // un-comment to test
 
