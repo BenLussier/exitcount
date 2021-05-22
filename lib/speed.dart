@@ -26,69 +26,68 @@ class _SpeedState extends State<SpeedWidget> {
   @override
   void initState() {
     super.initState();
-    startTimer();
+    startStream();
   }
 
   @override
   void dispose() {
-    stopTimer();
+    stopAll();
     super.dispose();
   }
 
   late StreamSubscription<Position> positionStream;
   late Position _position;
-  void startTimer() {
-    // if (serviceEnabled &&
-    //     (permission == LocationPermission.always ||
-    //         permission == LocationPermission.whileInUse)) {}
-
+  void startStream() {
     positionStream = Geolocator.getPositionStream(
-      desiredAccuracy: LocationAccuracy.high,
+      desiredAccuracy: LocationAccuracy.bestForNavigation,
       distanceFilter: 1,
     ).listen((Position position) {
       _position = position;
+      startTimer(); // now that _position is initialized
       setState(() {
         _rawSpeed = position.speed;
       });
     }, onError: (error) async {
       bool serviceEnabled;
       LocationPermission permission;
-
+      double _tempRawSpeed = -5;
       // Test if location services are enabled.
       serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
         // Location services are not enabled don't continue
         // accessing the position and request users of the
         // App to enable the location services.
-        setState(() {
-          _rawSpeed = -3;
-        });
+        _tempRawSpeed = -2;
       }
-
+      // Test if permissions are set correctly.
       permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
+        setState(() {
+          _rawSpeed = _tempRawSpeed;
+        });
         permission = await Geolocator.requestPermission();
-        if (permission == LocationPermission.deniedForever) {
-          // Permissions are denied forever, handle appropriately.
-          setState(() {
-            _rawSpeed = -4;
-          });
-        }
-
         if (permission == LocationPermission.denied) {
           // Permissions are denied, next time you could try
           // requesting permissions again (this is also where
           // Android's shouldShowRequestPermissionRationale
           // returned true. According to Android guidelines
           // your App should show an explanatory UI now.
-          setState(() {
-            _rawSpeed = -2;
-          });
+          _tempRawSpeed = -3;
         }
       }
+      if (permission == LocationPermission.deniedForever) {
+        // Permissions are denied forever, handle appropriately.
+        _tempRawSpeed = -4;
+      }
+      setState(() {
+        _rawSpeed = _tempRawSpeed;
+      });
       timer.cancel();
-      startTimer(); // Restarts stream properly?
+      startStream(); // Restarts stream properly?
     });
+  }
+
+  void startTimer() async {
     timer = Timer.periodic(Duration(seconds: 2), (Timer t) async {
       Duration diff = DateTime.now().difference(_position.timestamp!);
       if (diff > Duration(seconds: 2)) {
@@ -99,12 +98,12 @@ class _SpeedState extends State<SpeedWidget> {
     });
   }
 
-  void stopTimer() async {
+  void stopAll() async {
     timer.cancel();
     await positionStream.cancel();
   }
 
-  void openAppSettings() async {
+  void openDeviceSettings() async {
     await Geolocator.openAppSettings();
   }
 
@@ -116,86 +115,150 @@ class _SpeedState extends State<SpeedWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<AppSettingsCubit, AppSettings>(
       builder: (context, state) {
-        // _rawSpeed = 0; //uncomment to test
-        if (_rawSpeed == -3) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: AutoSizeText(
-                  'Please enable location services on your device.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 100,
-                    fontWeight: FontWeight.bold,
+        _rawSpeed = -2; //uncomment to test
+        if (_rawSpeed == -2) {
+          // LOCATION SERVICES ARE NOT ENABLED
+          return AspectRatio(
+            aspectRatio: 3 / 2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Center(
+                  child: AutoSizeText(
+                    'Please enable location services on your device.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 100,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    minFontSize: 10,
+                    maxFontSize: 100,
+                    maxLines: 2,
                   ),
                 ),
-              )
-            ],
+                ElevatedButton(
+                  onPressed: () => {openLocationSettings()},
+                  child: Text('Open Location Services'),
+                ),
+                Divider(
+                  height: 32,
+                  thickness: 3,
+                  indent: 0,
+                  endIndent: 0,
+                ),
+              ],
+            ),
+          );
+        } else if (_rawSpeed == -3) {
+          // JUST DENIED
+          return AspectRatio(
+            aspectRatio: 3 / 2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Center(
+                  child: AutoSizeText(
+                    'Please enable GPS permissions for the app.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 100,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    minFontSize: 10,
+                    maxFontSize: 100,
+                    maxLines: 2,
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () => {openDeviceSettings()},
+                  child: Text('Open Device Settings'),
+                ),
+                Divider(
+                  height: 32,
+                  thickness: 3,
+                  indent: 0,
+                  endIndent: 0,
+                ),
+              ],
+            ),
           );
         } else if (_rawSpeed == -4) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: AutoSizeText(
-                  'GPS permissions have been denied forever for this app. Please change permissions for this app to work properly.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 100,
-                    fontWeight: FontWeight.bold,
+          // DENIED FOREVER
+          return AspectRatio(
+            aspectRatio: 3 / 2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Center(
+                  child: AutoSizeText(
+                    'GPS permissions have been denied forever for this app. Please change permissions for this app to work properly.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 100,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    minFontSize: 10,
+                    maxFontSize: 100,
+                    maxLines: 4,
                   ),
                 ),
-              )
-            ],
-          );
-        } else if (_rawSpeed == -2) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: AutoSizeText(
-                  'Please enable GPS permissions for the app.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 100,
-                    fontWeight: FontWeight.bold,
-                  ),
+                ElevatedButton(
+                  onPressed: () => {openDeviceSettings()},
+                  child: Text('Open Device Settings'),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () => {openAppSettings()},
-                child: Text('Open Settings'),
-              ),
-              ElevatedButton(
-                onPressed: () => {openLocationSettings()},
-                child: Text('Open Location Services'),
-              ),
-            ],
+                Divider(
+                  height: 32,
+                  thickness: 3,
+                  indent: 0,
+                  endIndent: 0,
+                ),
+              ],
+            ),
           );
         } else if (_rawSpeed == -5) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: AutoSizeText(
-                  'An error occurred. Check permissions and location services are working properly.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 100,
-                    fontWeight: FontWeight.bold,
+          // UNKNOWN ERROR
+          return AspectRatio(
+            aspectRatio: 3 / 2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Center(
+                  child: AutoSizeText(
+                    'An unknown error occurred. Check permissions and location services are working properly.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 100,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    minFontSize: 10,
+                    maxFontSize: 100,
+                    maxLines: 2,
                   ),
                 ),
-              )
-            ],
+                ElevatedButton(
+                  onPressed: () => {openLocationSettings()},
+                  child: Text('Open Location Services'),
+                ),
+                ElevatedButton(
+                  onPressed: () => {openDeviceSettings()},
+                  child: Text('Open Device Settings'),
+                ),
+                Divider(
+                  height: 32,
+                  thickness: 3,
+                  indent: 0,
+                  endIndent: 0,
+                ),
+              ],
+            ),
           );
         } else {
           if (state.useKnots) {
@@ -348,13 +411,8 @@ class _SpeedState extends State<SpeedWidget> {
                                 _units,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                  fontFamily: 'OpenSans',
+                                  fontFamily: 'DMMono',
                                   fontSize: 300,
-                                  fontWeight: FontWeight.bold,
-                                  fontFeatures: [
-                                    FontFeature.tabularFigures(),
-                                  ],
-                                  height: 0.9,
                                 ),
                                 minFontSize: 10,
                                 maxFontSize: 300,
