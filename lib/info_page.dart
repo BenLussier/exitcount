@@ -15,31 +15,39 @@ class InfoPage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'Developer.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: _defaultFontSize + 4,
-                  ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.0),
+              child: FractionallySizedBox(
+                alignment: Alignment.center,
+                widthFactor: 0.6,
+                child: Image.asset(
+                  'logos/ExitCountWordLogo_Trans.png',
                 ),
-              ],
+              ),
+            ),
+            Text(
+              'Developer.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: _defaultFontSize + 4,
+              ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Placeholder(
-                //replace with actual logo
-                color: Colors.blueGrey,
-                fallbackHeight: 75,
+              child: FractionallySizedBox(
+                alignment: Alignment.center,
+                widthFactor: 0.25,
+                child: Image.asset(
+                  'logos/BenLussierLogo_BluGrn_RGB.png',
+                ),
               ),
             ),
             Text(
               'www.benlussier.com',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: _defaultFontSize,
                 height: _defaultFontHeight,
@@ -47,6 +55,7 @@ class InfoPage extends StatelessWidget {
             ),
             Text(
               'benlussier@live.com',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: _defaultFontSize,
                 height: _defaultFontHeight,
@@ -54,6 +63,7 @@ class InfoPage extends StatelessWidget {
             ),
             Text(
               'github.com/BenLussier',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: _defaultFontSize,
                 height: _defaultFontHeight,
@@ -63,6 +73,7 @@ class InfoPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Text(
                 'Donate.',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: _defaultFontSize + 4,
@@ -71,6 +82,7 @@ class InfoPage extends StatelessWidget {
             ),
             Text(
               'Venmo: @ben_lussier',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: _defaultFontSize,
                 height: _defaultFontHeight,
@@ -78,6 +90,7 @@ class InfoPage extends StatelessWidget {
             ),
             Text(
               'PayPal: @benlussier',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: _defaultFontSize,
                 height: _defaultFontHeight,
@@ -85,17 +98,23 @@ class InfoPage extends StatelessWidget {
             ),
             Text(
               'Cash App: \$BenLussier',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: _defaultFontSize,
                 height: _defaultFontHeight,
               ),
             ),
-            FlutterLogo(
-              size: 150,
-              style: FlutterLogoStyle.horizontal,
+            FractionallySizedBox(
+              alignment: Alignment.center,
+              widthFactor: 0.5,
+              child: FlutterLogo(
+                size: 150,
+                style: FlutterLogoStyle.horizontal,
+              ),
             ),
             Text(
               'Built with the Flutter™ SDK',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: _defaultFontSize,
               ),
