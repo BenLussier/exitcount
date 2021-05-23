@@ -8,7 +8,7 @@ class AppSettingsCubit extends HydratedCubit<AppSettings> {
           smGroupDistance: 1500,
           units: Units.Imperial,
           useKnots: true,
-          topMsg: 'ONLY Vaild @ Green Light',
+          topMsg: 'ONLY Valid @ Green Light',
           middleMsg: 'Lg Groups (6+) 1.5x Time',
           bottomMsg: 'Big Ways (10+) 2x Time',
         ));
@@ -18,7 +18,7 @@ class AppSettingsCubit extends HydratedCubit<AppSettings> {
         smGroupDistance: json['smGroupDistance'] ?? 1500,
         units: Units.values[json['units'] ?? Units.Imperial],
         useKnots: json['useKnots'] ?? true,
-        topMsg: json['topMsg'] ?? 'ONLY Vaild @ Green Light',
+        topMsg: json['topMsg'] ?? 'ONLY Valid @ Green Light',
         middleMsg: json['middleMsg'] ?? 'Lg Groups (6+) 1.5x Time',
         bottomMsg: json['bottomMsg'] ?? 'Big Ways (10+) 2x Time',
       );
