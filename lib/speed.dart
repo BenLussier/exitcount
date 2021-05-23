@@ -115,7 +115,7 @@ class _SpeedState extends State<SpeedWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<AppSettingsCubit, AppSettings>(
       builder: (context, state) {
-        _rawSpeed = -2; //uncomment to test
+        // _rawSpeed = -2; //uncomment to test
         if (_rawSpeed == -2) {
           // LOCATION SERVICES ARE NOT ENABLED
           return AspectRatio(
