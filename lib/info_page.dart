@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class InfoPage extends StatelessWidget {
   final double _defaultFontSize = 18.0;
   final double _defaultFontHeight = 1.5;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,12 +19,23 @@ class InfoPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
+              padding: EdgeInsets.only(bottom: 8.0),
               child: FractionallySizedBox(
                 alignment: Alignment.center,
                 widthFactor: 0.6,
                 child: Image.asset(
                   'logos/ExitCountWordLogo_Trans.png',
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 16.0),
+              child: Text(
+                'Version: 1.0.0',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: _defaultFontSize,
+                  height: _defaultFontHeight,
                 ),
               ),
             ),
