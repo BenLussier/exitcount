@@ -1,5 +1,5 @@
 name: exitcount
-description: A new Flutter project.
+description: Live Skydiving Exit-Separation Display
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -15,7 +15,9 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+
+# UPDATE INFO PAGE IF CHANGE VERSION
+version: 1.0.0
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
@@ -23,6 +25,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  cupertino_icons: ^1.0.0
   geolocator: ^7.0.3
   location: ^4.1.1
   settings_ui: ^1.0.0
@@ -33,20 +36,20 @@ dependencies:
   path_provider: ^2.0.1
   wakelock: ^0.5.1
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.9.0
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+flutter_icons:
+  android: 'launcher_icon'
+  ios: true
+  image_path: 'logos/ExitCountLogo.png'
+  adaptive_icon_background: 'logos/ExitCountLogo_AdaptiveBack.png'
+  adaptive_icon_foreground: 'logos/ExitCountLogo_AdaptiveFore.png'
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
