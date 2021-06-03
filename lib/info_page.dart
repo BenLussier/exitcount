@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class InfoPage extends StatelessWidget {
   final double _defaultFontSize = 18.0;
@@ -28,10 +29,29 @@ class InfoPage extends StatelessWidget {
                 ),
               ),
             ),
+            Text(
+              'Version: 1.0.0',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: _defaultFontSize,
+                height: _defaultFontHeight,
+              ),
+            ),
             Padding(
-              padding: EdgeInsets.only(bottom: 16.0),
+              padding: EdgeInsets.only(top: 32.0),
               child: Text(
-                'Version: 1.0.0',
+                'Sponsors.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: _defaultFontSize + 4,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 8.0),
+              child: Text(
+                'This app is 100% free thanks to the generous support of our sponsors.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: _defaultFontSize,
@@ -39,12 +59,36 @@ class InfoPage extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              'Developer.',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: _defaultFontSize + 4,
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.0),
+              child: FractionallySizedBox(
+                alignment: Alignment.center,
+                widthFactor: 0.5,
+                child: Image.asset(
+                  'logos/SkydiveUtahLogo.png',
+                ),
+              ),
+            ),
+            InkWell(
+              child: Text(
+                'www.skydiveutah.com',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: _defaultFontSize,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+              onTap: () => launch('https://www.skydiveutah.com'),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 32.0),
+              child: Text(
+                'Developer.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: _defaultFontSize + 4,
+                ),
               ),
             ),
             Padding(
@@ -57,80 +101,42 @@ class InfoPage extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              'www.benlussier.com',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: _defaultFontSize,
-                height: _defaultFontHeight,
-              ),
-            ),
-            Text(
-              'benlussier@live.com',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: _defaultFontSize,
-                height: _defaultFontHeight,
-              ),
-            ),
-            Text(
-              'github.com/BenLussier',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: _defaultFontSize,
-                height: _defaultFontHeight,
+            Padding(
+              padding: EdgeInsets.only(top: 8.0),
+              child: InkWell(
+                child: Text(
+                  'www.benlussier.com',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: _defaultFontSize,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+                onTap: () => launch('https://www.benlussier.com'),
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
+              padding: EdgeInsets.only(top: 8.0),
               child: Text(
-                'Donate.',
+                'benlussier@live.com',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: _defaultFontSize + 4,
+                  fontSize: _defaultFontSize,
+                  height: _defaultFontHeight,
                 ),
               ),
             ),
-            Text(
-              'Venmo: @ben_lussier',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: _defaultFontSize,
-                height: _defaultFontHeight,
+            Padding(
+              padding: EdgeInsets.only(top: 8.0),
+              child: Text(
+                'github.com/BenLussier',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: _defaultFontSize,
+                  height: _defaultFontHeight,
+                ),
               ),
             ),
-            Text(
-              'PayPal: @benlussier',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: _defaultFontSize,
-                height: _defaultFontHeight,
-              ),
-            ),
-            Text(
-              'Cash App: \$BenLussier',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: _defaultFontSize,
-                height: _defaultFontHeight,
-              ),
-            ),
-            FractionallySizedBox(
-              alignment: Alignment.center,
-              widthFactor: 0.5,
-              child: FlutterLogo(
-                size: 150,
-                style: FlutterLogoStyle.horizontal,
-              ),
-            ),
-            Text(
-              'Built with the Flutter™ SDK',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: _defaultFontSize,
-              ),
-            )
           ],
         ),
       ),

@@ -35,6 +35,7 @@ dependencies:
   responsive_framework: ^0.1.0
   path_provider: ^2.0.1
   wakelock: ^0.5.1
+  url_launcher: ^6.0.6
 
 dev_dependencies:
   flutter_test:
@@ -131,6 +132,7 @@ flutter:
   assets:
     - logos/BenLussierLogo_BluGrn_RGB.png
     - logos/ExitCountWordLogo_Trans.png
+    - logos/SkydiveUtahLogo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

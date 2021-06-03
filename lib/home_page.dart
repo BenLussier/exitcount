@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:wakelock/wakelock.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'app_settings.dart';
 import 'app_settings_cubit.dart';
@@ -14,9 +15,98 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Future<void> _showWarningDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'WARNING!',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.orange,
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                const Text(
+                  'Use this app at your own risk.',
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("I Agree."),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _showSponsorDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            '100% Free.',
+            textAlign: TextAlign.center,
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                const Text(
+                  'Thanks to our sponsors:',
+                  textAlign: TextAlign.center,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
+                  child: Container(
+                    constraints: BoxConstraints(maxWidth: 300),
+                    child: Image.asset(
+                      'logos/SkydiveUtahLogo.png',
+                    ),
+                  ),
+                ),
+                InkWell(
+                  child: const Text(
+                    'www.skydiveutah.com',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  onTap: () => launch('https://www.skydiveutah.com'),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("Got it!"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Wakelock.enable(); // keep screen on
+    Future.delayed(Duration.zero, () => _showSponsorDialog(context));
+    Future.delayed(
+        Duration.zero, () => _showWarningDialog(context)); // so is on top
     return Scaffold(
       appBar: AppBar(
           title: Text('ExitCount™'),
