@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: ListBody(
               children: <Widget>[
                 const Text(
-                  'Use this app at your own risk.',
+                  'Using this app could result in injury or death. Use this app at your own risk!',
                   textAlign: TextAlign.center,
                 ),
               ],
