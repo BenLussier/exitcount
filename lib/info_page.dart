@@ -37,6 +37,30 @@ class InfoPage extends StatelessWidget {
                 height: _defaultFontHeight,
               ),
             ),
+            Text(
+              '© 2021 ExitCount LLC',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: _defaultFontSize,
+                height: _defaultFontHeight,
+              ),
+            ),
+            Text(
+              'All rights reserved.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: _defaultFontSize,
+                height: _defaultFontHeight,
+              ),
+            ),
+            Text(
+              'ExitCountApp@gmail.com',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: _defaultFontSize,
+                height: _defaultFontHeight,
+              ),
+            ),
             Padding(
               padding: EdgeInsets.only(top: 32.0),
               child: Text(
@@ -83,7 +107,7 @@ class InfoPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 32.0),
               child: Text(
-                'Developer.',
+                'Follow.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -92,33 +116,9 @@ class InfoPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: FractionallySizedBox(
-                alignment: Alignment.center,
-                widthFactor: 0.25,
-                child: Image.asset(
-                  'logos/BenLussierLogo_BluGrn_RGB.png',
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: InkWell(
-                child: Text(
-                  'www.benlussier.com',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: _defaultFontSize,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-                onTap: () => launch('https://www.benlussier.com'),
-              ),
-            ),
-            Padding(
               padding: EdgeInsets.only(top: 8.0),
               child: Text(
-                'benlussier@live.com',
+                'Follow us to stay up-to-date on what is happening with the app.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: _defaultFontSize,
@@ -126,15 +126,12 @@ class InfoPage extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: Text(
-                'github.com/BenLussier',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: _defaultFontSize,
-                  height: _defaultFontHeight,
-                ),
+            Text(
+              'Instagram. @exit_count',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: _defaultFontSize,
+                height: _defaultFontHeight,
               ),
             ),
           ],

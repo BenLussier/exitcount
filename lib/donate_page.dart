@@ -26,32 +26,16 @@ class DonatePage extends StatelessWidget {
               ),
             ),
             Text(
-              "This app will always be 100% free. No purchase price. No pesky ads. This is because of our sponsors' generous donations to cover minimum operating costs for several years. However, more money will always be helpful to develop the app further. If you find this app especially helpful or saves your dropzone money, please consider donating:",
+              "This app will always be 100% free. No purchase price. No pesky ads. This is because of our sponsors' generous donations.",
               textAlign: TextAlign.center,
             ),
             Text(
-              'Venmo: @ben_lussier',
+              "If you would like to donate or sponsor the app, please contact us:",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: _defaultFontSize,
-                height: _defaultFontHeight,
-              ),
             ),
             Text(
-              'PayPal: @benlussier',
+              "ExitCountApp@gmail.com",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: _defaultFontSize,
-                height: _defaultFontHeight,
-              ),
-            ),
-            Text(
-              'Cash App: \$BenLussier',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: _defaultFontSize,
-                height: _defaultFontHeight,
-              ),
             ),
           ],
         ),
