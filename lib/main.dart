@@ -8,6 +8,7 @@ import 'app_settings_cubit.dart';
 
 import 'home_page.dart';
 import 'settings_page.dart';
+import 'manual_page.dart';
 import 'info_page.dart';
 import 'donate_page.dart';
 
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => MyHomePage(),
           '/settings': (context) => SettingsPage(),
+          '/manual': (context) => ManualPage(),
           '/info': (context) => InfoPage(),
           '/donate': (context) => DonatePage(),
         },

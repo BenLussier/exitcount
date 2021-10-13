@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum MenuItem { settings, info, donate }
+enum MenuItem { settings, manual, info, donate }
 
 class MoreMenu extends StatelessWidget {
   @override
@@ -11,6 +11,9 @@ class MoreMenu extends StatelessWidget {
         switch (value) {
           case MenuItem.settings:
             Navigator.of(context).pushNamed('/settings');
+            break;
+          case MenuItem.manual:
+            Navigator.of(context).pushNamed('/manual');
             break;
           case MenuItem.info:
             Navigator.of(context).pushNamed('/info');
@@ -24,6 +27,10 @@ class MoreMenu extends StatelessWidget {
         const PopupMenuItem<MenuItem>(
           value: MenuItem.settings,
           child: Text('Settings'),
+        ),
+        const PopupMenuItem<MenuItem>(
+          value: MenuItem.manual,
+          child: Text('Manual'),
         ),
         const PopupMenuItem<MenuItem>(
           value: MenuItem.info,

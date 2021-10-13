@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class DonatePage extends StatelessWidget {
   final double _defaultFontSize = 18.0;
-  final double _defaultFontHeight = 1.5;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
