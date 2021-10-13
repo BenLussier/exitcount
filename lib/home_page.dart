@@ -31,8 +31,29 @@ class _MyHomePageState extends State<MyHomePage> {
             child: ListBody(
               children: <Widget>[
                 const Text(
-                  'Using this app could result in injury or death. Use this app at your own risk!',
-                  textAlign: TextAlign.center,
+                  'Using this app incorrectly could result in injury or death. Use this app at your own risk!',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontStyle: FontStyle.italic),
+                ),
+                const Text(
+                  'Before using this app for skydiving operations, you MUST agree to the following:',
+                  textAlign: TextAlign.left,
+                ),
+                const Text(
+                  '• I have read and understand the entirety of the Manual.',
+                  textAlign: TextAlign.left,
+                ),
+                const Text(
+                  '• I have performed the section in the Manual titled, “VALIDATING THE APP”.',
+                  textAlign: TextAlign.left,
+                ),
+                const Text(
+                  '• I have installed the app in the plane in a safe and legal manner.',
+                  textAlign: TextAlign.left,
+                ),
+                const Text(
+                  '• I have communicated the information from the section in the Manual titled, “RISKS AND WARNINGS TO COMMUNICATE” to all persons using the app.',
+                  textAlign: TextAlign.left,
                 ),
               ],
             ),
