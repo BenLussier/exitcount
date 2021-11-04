@@ -11,6 +11,7 @@ import 'settings_page.dart';
 import 'manual_page.dart';
 import 'info_page.dart';
 import 'donate_page.dart';
+import 'problem_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // protect calls before runApp()
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
           '/manual': (context) => ManualPage(),
           '/info': (context) => InfoPage(),
           '/donate': (context) => DonatePage(),
+          '/problem': (context) => ProblemPage(),
         },
       ),
     );

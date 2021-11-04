@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum MenuItem { settings, manual, info, donate }
+enum MenuItem { settings, manual, info, donate, problem }
 
 class MoreMenu extends StatelessWidget {
   @override
@@ -21,6 +21,9 @@ class MoreMenu extends StatelessWidget {
           case MenuItem.donate:
             Navigator.of(context).pushNamed('/donate');
             break;
+          case MenuItem.problem:
+            Navigator.of(context).pushNamed('/problem');
+            break;
         }
       },
       itemBuilder: (BuildContext context) => <PopupMenuEntry<MenuItem>>[
@@ -39,6 +42,10 @@ class MoreMenu extends StatelessWidget {
         const PopupMenuItem<MenuItem>(
           value: MenuItem.donate,
           child: Text('Donate'),
+        ),
+        const PopupMenuItem<MenuItem>(
+          value: MenuItem.problem,
+          child: Text('Report Problem'),
         ),
       ],
     );

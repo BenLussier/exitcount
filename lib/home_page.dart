@@ -24,36 +24,66 @@ class _MyHomePageState extends State<MyHomePage> {
             'WARNING!',
             textAlign: TextAlign.center,
             style: TextStyle(
+              fontWeight: FontWeight.bold,
               color: Colors.orange,
             ),
           ),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                const Text(
-                  'Using this app incorrectly could result in injury or death. Use this app at your own risk!',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontStyle: FontStyle.italic),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 6.0),
+                  child: const Text(
+                    'Using this app incorrectly could result in injury or death. Use this app at your own risk!',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.orange,
+                    ),
+                  ),
                 ),
-                const Text(
-                  'Before using this app for skydiving operations, you MUST agree to the following:',
-                  textAlign: TextAlign.left,
+                Padding(
+                  padding: EdgeInsets.only(bottom: 6.0),
+                  child: const Text(
+                    'Before using this app for skydiving operations, you MUST agree to the following:',
+                    textAlign: TextAlign.left,
+                  ),
                 ),
-                const Text(
-                  '• I have read and understand the entirety of the Manual.',
-                  textAlign: TextAlign.left,
+                Padding(
+                  padding: EdgeInsets.only(bottom: 6.0),
+                  child: const Text(
+                    '• I have read and understand the entirety of the Manual.',
+                    textAlign: TextAlign.left,
+                  ),
                 ),
-                const Text(
-                  '• I have performed the section in the Manual titled, “VALIDATING THE APP”.',
-                  textAlign: TextAlign.left,
+                Padding(
+                  padding: EdgeInsets.only(bottom: 6.0),
+                  child: const Text(
+                    '• I have performed the section in the Manual titled, “VALIDATING THE APP”.',
+                    textAlign: TextAlign.left,
+                  ),
                 ),
-                const Text(
-                  '• I have installed the app in the plane in a safe and legal manner.',
-                  textAlign: TextAlign.left,
+                Padding(
+                  padding: EdgeInsets.only(bottom: 6.0),
+                  child: const Text(
+                    '• I have installed the app in the plane in a safe and legal manner.',
+                    textAlign: TextAlign.left,
+                  ),
                 ),
-                const Text(
-                  '• I have communicated the information from the section in the Manual titled, “RISKS AND WARNINGS TO COMMUNICATE” to all persons using the app.',
-                  textAlign: TextAlign.left,
+                Padding(
+                  padding: EdgeInsets.only(bottom: 6.0),
+                  child: const Text(
+                    '• I have communicated the information from the section in the Manual titled, “RISKS AND WARNINGS TO COMMUNICATE” to all persons using the app.',
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 6.0),
+                  child: const Text(
+                    '• Using this app denotes that you have read, understand, and agree to all the terms of the app, including all in-app warnings.',
+                    textAlign: TextAlign.left,
+                  ),
                 ),
               ],
             ),
@@ -84,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: ListBody(
               children: <Widget>[
                 const Text(
-                  'Thanks to our sponsors:',
+                  'Thanks to our sponsors.',
                   textAlign: TextAlign.center,
                 ),
                 Padding(
