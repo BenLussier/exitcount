@@ -53,13 +53,17 @@ class InfoPage extends StatelessWidget {
                 height: _defaultFontHeight,
               ),
             ),
-            Text(
-              'ExitCountApp@gmail.com',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: _defaultFontSize,
-                height: _defaultFontHeight,
+            InkWell(
+              child: Text(
+                'ExitCountApp@gmail.com',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: _defaultFontSize,
+                  height: _defaultFontHeight,
+                  decoration: TextDecoration.underline,
+                ),
               ),
+              onTap: () => launch('mailto:exitcountapp@gmail.com'),
             ),
             Padding(
               padding: EdgeInsets.only(top: 32.0),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DonatePage extends StatelessWidget {
   final double _defaultFontSize = 18.0;
@@ -33,9 +34,17 @@ class DonatePage extends StatelessWidget {
               "If you would like to donate or sponsor the app, please contact us:",
               textAlign: TextAlign.center,
             ),
-            Text(
-              "ExitCountApp@gmail.com",
-              textAlign: TextAlign.center,
+            InkWell(
+              child: Text(
+                'ExitCountApp@gmail.com',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: _defaultFontSize,
+                  height: 1.5,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+              onTap: () => launch('mailto:exitcountapp@gmail.com'),
             ),
           ],
         ),
