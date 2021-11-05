@@ -1,4 +1,4 @@
-package com.benlussier.exitcount
+package com.exitcountllcexitcount
 
 import io.flutter.embedding.android.FlutterActivity
 
