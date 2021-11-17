@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class DonatePage extends StatelessWidget {
+class FreePage extends StatelessWidget {
   final double _defaultFontSize = 18.0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Donate'),
+        title: Text('Always Free.'),
         backgroundColor: ThemeData.dark().primaryColor,
         centerTitle: false,
       ),
@@ -30,21 +30,24 @@ class DonatePage extends StatelessWidget {
               "This app will always be 100% free. No purchase price. No pesky ads. This is because of our sponsors' generous donations.",
               textAlign: TextAlign.center,
             ),
-            Text(
-              "If you would like to donate or sponsor the app, please contact us:",
-              textAlign: TextAlign.center,
+            Padding(
+              padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
+              child: Container(
+                constraints: BoxConstraints(maxWidth: 300),
+                child: Image.asset(
+                  'logos/SkydiveUtahLogo.png',
+                ),
+              ),
             ),
             InkWell(
-              child: Text(
-                'ExitCountApp@gmail.com',
+              child: const Text(
+                'www.skydiveutah.com',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: _defaultFontSize,
-                  height: 1.5,
                   decoration: TextDecoration.underline,
                 ),
               ),
-              onTap: () => launch('mailto:exitcountapp@gmail.com'),
+              onTap: () => launch('https://www.skydiveutah.com'),
             ),
           ],
         ),

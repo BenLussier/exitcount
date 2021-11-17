@@ -10,7 +10,7 @@ import 'home_page.dart';
 import 'settings_page.dart';
 import 'manual_page.dart';
 import 'info_page.dart';
-import 'donate_page.dart';
+import 'free_page.dart';
 import 'problem_page.dart';
 
 void main() async {
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           '/settings': (context) => SettingsPage(),
           '/manual': (context) => ManualPage(),
           '/info': (context) => InfoPage(),
-          '/donate': (context) => DonatePage(),
+          '/free': (context) => FreePage(),
           '/problem': (context) => ProblemPage(),
         },
       ),

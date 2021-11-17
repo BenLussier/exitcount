@@ -68,49 +68,6 @@ class InfoPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 32.0),
               child: Text(
-                'Sponsors.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: _defaultFontSize + 4,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: Text(
-                'This app is 100% free thanks to the generous support of our sponsors.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: _defaultFontSize,
-                  height: _defaultFontHeight,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: FractionallySizedBox(
-                alignment: Alignment.center,
-                widthFactor: 0.5,
-                child: Image.asset(
-                  'logos/SkydiveUtahLogo.png',
-                ),
-              ),
-            ),
-            InkWell(
-              child: Text(
-                'www.skydiveutah.com',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: _defaultFontSize,
-                  decoration: TextDecoration.underline,
-                ),
-              ),
-              onTap: () => launch('https://www.skydiveutah.com'),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 32.0),
-              child: Text(
                 'Follow.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
